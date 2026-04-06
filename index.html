@@ -188,7 +188,7 @@ font-size: 11px;
 font-weight: 600;
 letter-spacing: 0.2em;
 text-transform: uppercase;
-color: var(–gold);
+color: #e8752a !important;
 margin-bottom: 24px;
 display: flex;
 align-items: center;
@@ -205,7 +205,7 @@ background: var(–gold);
 font-family: ‘DM Serif Display’, serif;
 font-size: clamp(44px, 7vw, 88px);
 line-height: 1.0;
-color: var(–white);
+color: #ffffff !important;
 margin-bottom: 28px;
 letter-spacing: -0.02em;
 }
@@ -215,7 +215,7 @@ color: var(–gold);
 }
 .hero-subtitle {
 font-size: clamp(16px, 2vw, 19px);
-color: rgba(255,255,255,0.55);
+color: rgba(255,255,255,0.75) !important;
 max-width: 580px;
 line-height: 1.7;
 margin-bottom: 48px;
@@ -228,10 +228,10 @@ flex-wrap: wrap;
 }
 .btn-primary {
 padding: 14px 32px;
-background: var(–white);
-color: var(–black);
-text-decoration: none;
-font-weight: 600;
+background: #ffffff !important;
+color: #0f2140 !important;
+text-decoration: none !important;
+font-weight: 700;
 font-size: 14px;
 letter-spacing: 0.04em;
 border-radius: var(–radius);
@@ -241,25 +241,26 @@ align-items: center;
 gap: 8px;
 }
 .btn-primary:hover {
-background: var(–gray-200);
+background: #e7e5e4 !important;
+color: #0f2140 !important;
 transform: translateY(-1px);
 }
 .btn-secondary {
 padding: 14px 32px;
 background: transparent;
-color: rgba(255,255,255,0.75);
-text-decoration: none;
+color: rgba(255,255,255,0.85) !important;
+text-decoration: none !important;
 font-weight: 500;
 font-size: 14px;
 letter-spacing: 0.04em;
-border: 1px solid rgba(255,255,255,0.2);
+border: 1px solid rgba(255,255,255,0.35);
 border-radius: var(–radius);
 transition: all var(–transition);
 }
 .btn-secondary:hover {
-background: rgba(255,255,255,0.08);
-color: var(–white);
-border-color: rgba(255,255,255,0.4);
+background: rgba(255,255,255,0.1);
+color: #ffffff !important;
+border-color: rgba(255,255,255,0.6);
 }
 .hero-stats {
 position: absolute;
@@ -993,8 +994,115 @@ animation: none;
 .sectores-grid { grid-template-columns: 1fr; }
 .products-grid { grid-template-columns: 1fr; }
 }
-</style>
 
+/* ─── CATÁLOGO NUEVO: FAMILIAS + GRID COMPACTO ─── */
+.familias-grid {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+gap: 12px;
+margin-bottom: 48px;
+}
+.familia-card {
+padding: 20px 16px;
+border: 2px solid var(–gray-200);
+border-radius: 8px;
+text-align: center;
+cursor: pointer;
+transition: all var(–transition);
+background: var(–white);
+user-select: none;
+}
+.familia-card:hover,
+.familia-card.active {
+border-color: var(–black);
+background: var(–black);
+color: var(–white);
+transform: translateY(-2px);
+box-shadow: 0 8px 24px rgba(15,33,64,0.15);
+}
+.familia-card.active .familia-count { color: rgba(255,255,255,0.6); }
+.familia-emoji { font-size: 28px; margin-bottom: 8px; display: block; }
+.familia-name {
+font-size: 12px;
+font-weight: 700;
+letter-spacing: 0.06em;
+text-transform: uppercase;
+color: var(–black);
+transition: color var(–transition);
+line-height: 1.3;
+}
+.familia-card:hover .familia-name,
+.familia-card.active .familia-name { color: var(–white); }
+.familia-count {
+font-size: 11px;
+color: var(–gray-400);
+margin-top: 4px;
+font-weight: 500;
+transition: color var(–transition);
+}
+
+/* Sección por categoría */
+.cat-section { margin-bottom: 56px; }
+.cat-section-header {
+display: flex;
+align-items: center;
+justify-content: space-between;
+margin-bottom: 20px;
+padding-bottom: 16px;
+border-bottom: 2px solid var(–gray-200);
+}
+.cat-section-title {
+font-size: 18px;
+font-weight: 700;
+color: var(–black);
+display: flex;
+align-items: center;
+gap: 10px;
+}
+.cat-section-subtitle { font-size: 13px; color: var(–gray-400); font-weight: 400; margin-left: 4px; }
+.btn-ver-todos {
+padding: 8px 18px;
+border: 1.5px solid var(–black);
+border-radius: 100px;
+font-size: 12px;
+font-weight: 600;
+color: var(–black);
+background: transparent;
+cursor: pointer;
+font-family: ‘DM Sans’, sans-serif;
+transition: all var(–transition);
+letter-spacing: 0.04em;
+white-space: nowrap;
+}
+.btn-ver-todos:hover {
+background: var(–black);
+color: var(–white);
+}
+.btn-ver-todos.expanded {
+background: var(–gold);
+border-color: var(–gold);
+color: var(–white);
+}
+.cat-products-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+gap: 20px;
+}
+.product-card-hidden { display: none !important; }
+
+@media (max-width: 900px) {
+.familias-grid { grid-template-columns: repeat(2, 1fr); }
+.cat-products-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 480px) {
+.familias-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+.familia-card { padding: 16px 10px; }
+.familia-emoji { font-size: 22px; }
+.familia-name { font-size: 10px; }
+.cat-products-grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+}
+
+</style>
 </head>
 <body>
 
@@ -1214,27 +1322,1898 @@ animation: none;
 
 <section class="section catalogo" id="catalogo">
   <div class="section-inner">
-    <div class="catalogo-header">
-      <div>
-        <div class="section-label reveal">Catálogo</div>
-        <h2 class="section-title reveal" style="margin-bottom:0">Productos<br><em>disponibles</em></h2>
+    <!-- Grid de familias -->
+    <div class="section-label reveal">Explora por familia</div>
+    <h2 class="section-title reveal" style="margin-bottom:32px">Catálogo<br><em>completo</em></h2>
+    <div class="familias-grid" id="familiasGrid">
+  <div class="familia-card" onclick="filterFamily('botanas')" data-cat="botanas">
+    <span class="familia-emoji">🥔</span>
+    <div class="familia-name">Botanas y Snacks</div>
+    <div class="familia-count">18 productos</div>
+  </div>
+  <div class="familia-card" onclick="filterFamily('bebidas')" data-cat="bebidas">
+    <span class="familia-emoji">💧</span>
+    <div class="familia-name">Bebidas</div>
+    <div class="familia-count">16 productos</div>
+  </div>
+  <div class="familia-card" onclick="filterFamily('alimentos')" data-cat="alimentos">
+    <span class="familia-emoji">🫙</span>
+    <div class="familia-name">Alimentos</div>
+    <div class="familia-count">36 productos</div>
+  </div>
+  <div class="familia-card" onclick="filterFamily('cereales')" data-cat="cereales">
+    <span class="familia-emoji">🌾</span>
+    <div class="familia-name">Cereales y Desayuno</div>
+    <div class="familia-count">13 productos</div>
+  </div>
+  <div class="familia-card" onclick="filterFamily('pan')" data-cat="pan">
+    <span class="familia-emoji">🍞</span>
+    <div class="familia-name">Pan y Pastelería</div>
+    <div class="familia-count">14 productos</div>
+  </div>
+  <div class="familia-card" onclick="filterFamily('enlatados')" data-cat="enlatados">
+    <span class="familia-emoji">🥫</span>
+    <div class="familia-name">Enlatados</div>
+    <div class="familia-count">15 productos</div>
+  </div>
+  <div class="familia-card" onclick="filterFamily('lacteos')" data-cat="lacteos">
+    <span class="familia-emoji">🥛</span>
+    <div class="familia-name">Lácteos</div>
+    <div class="familia-count">6 productos</div>
+  </div>
+  <div class="familia-card" onclick="filterFamily('dulces')" data-cat="dulces">
+    <span class="familia-emoji">🍬</span>
+    <div class="familia-name">Dulces</div>
+    <div class="familia-count">6 productos</div>
+  </div>
+</div>
+
+```
+<!-- Buscador -->
+<div style="margin-bottom:32px">
+  <div class="catalogo-search reveal" style="width:100%;max-width:380px">
+    <input type="text" id="searchInput" placeholder="Buscar producto, marca o categoría...">
+  </div>
+</div>
+<!-- Secciones por categoría -->
+<div id="catalogSections">
+```
+
+<div class="cat-section" id="section-botanas" data-cat="botanas">
+  <div class="cat-section-header">
+    <div class="cat-section-title">
+      🥔 Botanas y Snacks
+      <span class="cat-section-subtitle">18 productos</span>
+    </div>
+    <button class="btn-ver-todos" onclick="toggleSection(this, 'botanas')" data-cat="botanas">Ver todos →</button>
+  </div>
+  <div class="cat-products-grid">
+    <div class="product-card" data-index="0">
+      <div class="product-img">
+        🥔
+        <div class="product-brand-badge">Sabritas</div>
       </div>
-      <div class="catalogo-search reveal">
-        <input type="text" id="searchInput" placeholder="Buscar producto o marca...">
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Sabritas Clásicas Familiar</div>
+        <div class="product-desc">Papas fritas originales en presentación familiar. La más vendida de México.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ASabritas%20Clásicas%20Familiar%2A%20(Sabritas).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
       </div>
     </div>
-    <div class="filter-tabs" id="filterTabs">
-      <button class="filter-tab active" data-cat="todos">Todos</button>
-      <button class="filter-tab" data-cat="botanas">🥔 Botanas</button>
-      <button class="filter-tab" data-cat="bebidas">💧 Bebidas</button>
-      <button class="filter-tab" data-cat="alimentos">🫙 Alimentos</button>
-      <button class="filter-tab" data-cat="cereales">🌾 Cereales</button>
-      <button class="filter-tab" data-cat="pan">🍞 Pan y pastelería</button>
-      <button class="filter-tab" data-cat="enlatados">🥫 Enlatados</button>
-      <button class="filter-tab" data-cat="lacteos">🥛 Lácteos</button>
-      <button class="filter-tab" data-cat="dulces">🍬 Dulces</button>
+    <div class="product-card" data-index="1">
+      <div class="product-img">
+        🥔
+        <div class="product-brand-badge">Sabritas</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Sabritas Clásicas Chica</div>
+        <div class="product-desc">Presentación individual. Alta rotación en punto de venta.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ASabritas%20Clásicas%20Chica%2A%20(Sabritas).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
     </div>
-    <div class="products-grid" id="productsGrid"></div>
+    <div class="product-card" data-index="2">
+      <div class="product-img">
+        🌶️
+        <div class="product-brand-badge">Sabritas</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Cheetos Flamin' Hot Familiar</div>
+        <div class="product-desc">Botana de maíz con chile. Top seller segmento picante.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ACheetos%20Flamin'%20Hot%20Familiar%2A%20(Sabritas).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="3">
+      <div class="product-img">
+        🧡
+        <div class="product-brand-badge">Sabritas</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Cheetos Horneados</div>
+        <div class="product-desc">Versión horneada, menor grasa. Canal health-conscious.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ACheetos%20Horneados%2A%20(Sabritas).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="4">
+      <div class="product-img">
+        🔺
+        <div class="product-brand-badge">Sabritas</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Doritos Nacho Familiar</div>
+        <div class="product-desc">Totopos triangulares sabor nacho. Icónico portafolio PepsiCo.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ADoritos%20Nacho%20Familiar%2A%20(Sabritas).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="5">
+      <div class="product-img">
+        🔥
+        <div class="product-brand-badge">Sabritas</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Doritos Flamas</div>
+        <div class="product-desc">Sabor picante-limón. Alta demanda en tiendas de conveniencia.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ADoritos%20Flamas%2A%20(Sabritas).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="6">
+      <div class="product-img">
+        🧀
+        <div class="product-brand-badge">Sabritas</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Ruffles Queso</div>
+        <div class="product-desc">Papas onduladas sabor queso. Fuerte en canal mayoreo.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ARuffles%20Queso%2A%20(Sabritas).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="7">
+      <div class="product-img">
+        🥔
+        <div class="product-brand-badge">Sabritas</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Ruffles Crema y Especias</div>
+        <div class="product-desc">Sabor crema. Complemento del portafolio Ruffles.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ARuffles%20Crema%20y%20Especias%2A%20(Sabritas).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="8">
+      <div class="product-img">
+        🌮
+        <div class="product-brand-badge">Barcel</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Takis Fuego</div>
+        <div class="product-desc">Tortillitas enrolladas picantes. Uno de los snacks más demandados.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ATakis%20Fuego%2A%20(Barcel).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="9">
+      <div class="product-img">
+        🟢
+        <div class="product-brand-badge">Barcel</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Takis Verde</div>
+        <div class="product-desc">Sabor chile verde y limón. Variante popular del portafolio Takis.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ATakis%20Verde%2A%20(Barcel).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="10">
+      <div class="product-img">
+        🍟
+        <div class="product-brand-badge">Barcel</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Barcel Chips Chile</div>
+        <div class="product-desc">Papas con chile y limón. Clásico abarrotes mexicanos.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ABarcel%20Chips%20Chile%2A%20(Barcel).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="11">
+      <div class="product-img">
+        🔴
+        <div class="product-brand-badge">Barcel</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Barcel Chips Fuego</div>
+        <div class="product-desc">Sabor fuego intenso. Alta rotación tiendas de barrio.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ABarcel%20Chips%20Fuego%2A%20(Barcel).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="12">
+      <div class="product-img">
+        🥜
+        <div class="product-brand-badge">Barcel</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Cacahuate</div>
+        <div class="product-name">Barcel Hot Nuts</div>
+        <div class="product-desc">Cacahuates enchilados Barcel. Snack de bolsillo, gran margen.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ABarcel%20Hot%20Nuts%2A%20(Barcel).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="13">
+      <div class="product-img">
+        🥜
+        <div class="product-brand-badge">Barcel</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Cacahuate</div>
+        <div class="product-name">Barcel Runners Enchilados</div>
+        <div class="product-desc">Cacahuates con chile. Fuerte presencia en abarrotes.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ABarcel%20Runners%20Enchilados%2A%20(Barcel).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="14">
+      <div class="product-img">
+        🟤
+        <div class="product-brand-badge">Mafer</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Cacahuate</div>
+        <div class="product-name">Cacahuates Japoneses Mafer</div>
+        <div class="product-desc">Cacahuates estilo japonés. Presentaciones 180g y 500g.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ACacahuates%20Japoneses%20Mafer%2A%20(Mafer).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="15">
+      <div class="product-img">
+        🥜
+        <div class="product-brand-badge">Mafer</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Cacahuate</div>
+        <div class="product-name">Cacahuates Tostados Mafer</div>
+        <div class="product-desc">Cacahuates tostados salados. Básico en el surtido de botanas.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ACacahuates%20Tostados%20Mafer%2A%20(Mafer).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="16">
+      <div class="product-img">
+        🌽
+        <div class="product-brand-badge">Sabritas</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Fritos Originales</div>
+        <div class="product-desc">Tiras de maíz fritas. Clásico que nunca falla en tiendas.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AFritos%20Originales%2A%20(Sabritas).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="17">
+      <div class="product-img">
+        🔶
+        <div class="product-brand-badge">Sabritas</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Botanas y Snacks · Fritura</div>
+        <div class="product-name">Tostitos con Queso</div>
+        <div class="product-desc">Totopos redondos con dip de queso incluido. Canal impulso.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ATostitos%20con%20Queso%2A%20(Sabritas).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cat-section" id="section-bebidas" data-cat="bebidas">
+  <div class="cat-section-header">
+    <div class="cat-section-title">
+      💧 Bebidas
+      <span class="cat-section-subtitle">16 productos</span>
+    </div>
+    <button class="btn-ver-todos" onclick="toggleSection(this, 'bebidas')" data-cat="bebidas">Ver todos →</button>
+  </div>
+  <div class="cat-products-grid">
+    <div class="product-card" data-index="0">
+      <div class="product-img">
+        💧
+        <div class="product-brand-badge">Peñafiel</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Agua Embotellada</div>
+        <div class="product-name">Peñafiel Mineral s/Gas 600ml</div>
+        <div class="product-desc">Agua mineral natural sin gas. Presentación individual.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2APeñafiel%20Mineral%20s/Gas%20600ml%2A%20(Peñafiel).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="1">
+      <div class="product-img">
+        🫧
+        <div class="product-brand-badge">Peñafiel</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Agua Embotellada</div>
+        <div class="product-name">Peñafiel Mineral c/Gas 600ml</div>
+        <div class="product-desc">Agua mineral con gas. Para mesa y bar.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2APeñafiel%20Mineral%20c/Gas%20600ml%2A%20(Peñafiel).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="2">
+      <div class="product-img">
+        🍊
+        <div class="product-brand-badge">Peñafiel</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Refrescos</div>
+        <div class="product-name">Peñafiel Toronja Lata</div>
+        <div class="product-desc">Refresco de toronja en lata 355ml. Muy fuerte en NL y norte.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2APeñafiel%20Toronja%20Lata%2A%20(Peñafiel).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="3">
+      <div class="product-img">
+        🍋
+        <div class="product-brand-badge">Peñafiel</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Refrescos</div>
+        <div class="product-name">Peñafiel Limón Lata</div>
+        <div class="product-desc">Refresco de limón. Surtido básico mayoreo.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2APeñafiel%20Limón%20Lata%2A%20(Peñafiel).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="4">
+      <div class="product-img">
+        🍎
+        <div class="product-brand-badge">Peñafiel</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Refrescos</div>
+        <div class="product-name">Peñafiel Manzana Lata</div>
+        <div class="product-desc">Refresco sabor manzana en lata. Complemento del portafolio.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2APeñafiel%20Manzana%20Lata%2A%20(Peñafiel).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="5">
+      <div class="product-img">
+        🍅
+        <div class="product-brand-badge">Clamato</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Jugos y Néctares</div>
+        <div class="product-name">Clamato Original 946ml</div>
+        <div class="product-desc">Jugo de tomate y almeja. Base micheladas y cócteles. Fuerte en foodservice.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AClamato%20Original%20946ml%2A%20(Clamato).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="6">
+      <div class="product-img">
+        🥂
+        <div class="product-brand-badge">Clamato</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Jugos y Néctares</div>
+        <div class="product-name">Clamato Preparado 946ml</div>
+        <div class="product-desc">Listo para beber con chile y limón. Canal restaurantes y hoteles.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AClamato%20Preparado%20946ml%2A%20(Clamato).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="7">
+      <div class="product-img">
+        🥭
+        <div class="product-brand-badge">Jumex</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Jugos y Néctares</div>
+        <div class="product-name">Jumex Mango Lata 335ml</div>
+        <div class="product-desc">Néctar de mango. El sabor más vendido de Jumex.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AJumex%20Mango%20Lata%20335ml%2A%20(Jumex).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="8">
+      <div class="product-img">
+        🍑
+        <div class="product-brand-badge">Jumex</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Jugos y Néctares</div>
+        <div class="product-name">Jumex Durazno Lata 335ml</div>
+        <div class="product-desc">Néctar de durazno. Sabor ancla del portafolio Jumex.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AJumex%20Durazno%20Lata%20335ml%2A%20(Jumex).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="9">
+      <div class="product-img">
+        🟡
+        <div class="product-brand-badge">Jumex</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Jugos y Néctares</div>
+        <div class="product-name">Jumex Guayaba Lata 335ml</div>
+        <div class="product-desc">Néctar de guayaba. Alta rotación en abarrotes y misceláneas.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AJumex%20Guayaba%20Lata%20335ml%2A%20(Jumex).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="10">
+      <div class="product-img">
+        🍊
+        <div class="product-brand-badge">Jumex</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Jugos y Néctares</div>
+        <div class="product-name">Jumex Naranja Lata 335ml</div>
+        <div class="product-desc">Néctar de naranja. Versión lata para canal mayoreo.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AJumex%20Naranja%20Lata%20335ml%2A%20(Jumex).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="11">
+      <div class="product-img">
+        🍓
+        <div class="product-brand-badge">Jumex</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Jugos y Néctares</div>
+        <div class="product-name">Jumex Tetra Fresa 200ml</div>
+        <div class="product-desc">Agua de fresa en Tetra. Ideal para lunch box y primaria.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AJumex%20Tetra%20Fresa%20200ml%2A%20(Jumex).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="12">
+      <div class="product-img">
+        🌺
+        <div class="product-brand-badge">Jumex</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Jugos y Néctares</div>
+        <div class="product-name">Jumex Tetra Jamaica 200ml</div>
+        <div class="product-desc">Agua de jamaica en Tetra. Sabor mexicano por excelencia.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AJumex%20Tetra%20Jamaica%20200ml%2A%20(Jumex).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="13">
+      <div class="product-img">
+        🟫
+        <div class="product-brand-badge">Jumex</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Jugos y Néctares</div>
+        <div class="product-name">Jumex Tetra Tamarindo 200ml</div>
+        <div class="product-desc">Agua de tamarindo. Fuerte rotación en canal escolar.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AJumex%20Tetra%20Tamarindo%20200ml%2A%20(Jumex).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="14">
+      <div class="product-img">
+        🥭
+        <div class="product-brand-badge">Boing</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Jugos y Néctares</div>
+        <div class="product-name">Boing Mango 500ml</div>
+        <div class="product-desc">Bebida de mango en presentación PET. Icónico mexicano.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ABoing%20Mango%20500ml%2A%20(Boing).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="15">
+      <div class="product-img">
+        🟡
+        <div class="product-brand-badge">Boing</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Bebidas · Jugos y Néctares</div>
+        <div class="product-name">Boing Guayaba 500ml</div>
+        <div class="product-desc">Bebida de guayaba. Alta demanda en canal abarrotes.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ABoing%20Guayaba%20500ml%2A%20(Boing).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cat-section" id="section-alimentos" data-cat="alimentos">
+  <div class="cat-section-header">
+    <div class="cat-section-title">
+      🫙 Alimentos y Condimentos
+      <span class="cat-section-subtitle">36 productos</span>
+    </div>
+    <button class="btn-ver-todos" onclick="toggleSection(this, 'alimentos')" data-cat="alimentos">Ver todos →</button>
+  </div>
+  <div class="cat-products-grid">
+    <div class="product-card" data-index="0">
+      <div class="product-img">
+        🍅
+        <div class="product-brand-badge">Heinz</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Salsas y Aderezos</div>
+        <div class="product-name">Heinz Catsup 397g</div>
+        <div class="product-desc">Catsup clásica Heinz. Presentación mediana para retail.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AHeinz%20Catsup%20397g%2A%20(Heinz).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="1">
+      <div class="product-img">
+        🍅
+        <div class="product-brand-badge">Heinz</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Salsas y Aderezos</div>
+        <div class="product-name">Heinz Catsup Galón</div>
+        <div class="product-desc">Galón para foodservice. Restaurantes y comedores institucionales.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AHeinz%20Catsup%20Galón%2A%20(Heinz).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="2">
+      <div class="product-img">
+        🔴
+        <div class="product-brand-badge">Clemente Jacques</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Salsas y Aderezos</div>
+        <div class="product-name">Clemente Jacques Catsup 900g</div>
+        <div class="product-desc">Catsup mexicana clásica. Alternativa nacional de alta rotación.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AClemente%20Jacques%20Catsup%20900g%2A%20(Clemente%20Jacques).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="3">
+      <div class="product-img">
+        🤍
+        <div class="product-brand-badge">McCormick</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Salsas y Aderezos</div>
+        <div class="product-name">McCormick Mayonesa 400g</div>
+        <div class="product-desc">Mayonesa clásica McCormick. Líder en el mercado mexicano.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMcCormick%20Mayonesa%20400g%2A%20(McCormick).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="4">
+      <div class="product-img">
+        🤍
+        <div class="product-brand-badge">McCormick</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Salsas y Aderezos</div>
+        <div class="product-name">McCormick Mayonesa 1kg</div>
+        <div class="product-desc">Presentación 1kg para canal mayoreo y foodservice.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMcCormick%20Mayonesa%201kg%2A%20(McCormick).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="5">
+      <div class="product-img">
+        🟡
+        <div class="product-brand-badge">Hellmann's</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Salsas y Aderezos</div>
+        <div class="product-name">Hellmann's Mayonesa 930g</div>
+        <div class="product-desc">Mayonesa premium. Canal autoservicio y restaurantes.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AHellmann's%20Mayonesa%20930g%2A%20(Hellmann's).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="6">
+      <div class="product-img">
+        🌶️
+        <div class="product-brand-badge">Valentina</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Salsas Botaneras</div>
+        <div class="product-name">Valentina Salsa 370ml</div>
+        <div class="product-desc">Salsa picante roja clásica. Básico irrenunciable en abarrotes.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AValentina%20Salsa%20370ml%2A%20(Valentina).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="7">
+      <div class="product-img">
+        🔴
+        <div class="product-brand-badge">Valentina</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Salsas Botaneras</div>
+        <div class="product-name">Valentina Extra Picante 370ml</div>
+        <div class="product-desc">Versión extra picante. Alta rotación junto con la clásica.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AValentina%20Extra%20Picante%20370ml%2A%20(Valentina).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="8">
+      <div class="product-img">
+        🌶️
+        <div class="product-brand-badge">Cholula</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Salsas Botaneras</div>
+        <div class="product-name">Cholula Salsa Original 150ml</div>
+        <div class="product-desc">Salsa artesanal premium. Canal restaurantes y hoteles finos.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ACholula%20Salsa%20Original%20150ml%2A%20(Cholula).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="9">
+      <div class="product-img">
+        🟢
+        <div class="product-brand-badge">Herdez</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Salsas de Mesa</div>
+        <div class="product-name">Herdez Salsa Verde 220g</div>
+        <div class="product-desc">Salsa verde para cocinar. Top seller en salsas enlatadas.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AHerdez%20Salsa%20Verde%20220g%2A%20(Herdez).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="10">
+      <div class="product-img">
+        🔴
+        <div class="product-brand-badge">Herdez</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Salsas de Mesa</div>
+        <div class="product-name">Herdez Salsa Roja 220g</div>
+        <div class="product-desc">Salsa roja para cocinar. Imprescindible en cocinas mexicanas.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AHerdez%20Salsa%20Roja%20220g%2A%20(Herdez).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="11">
+      <div class="product-img">
+        🥑
+        <div class="product-brand-badge">Herdez</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Salsas de Mesa</div>
+        <div class="product-name">Herdez Guacamole 220g</div>
+        <div class="product-desc">Guacamole listo para usar. Canal foodservice y retail.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AHerdez%20Guacamole%20220g%2A%20(Herdez).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="12">
+      <div class="product-img">
+        🍗
+        <div class="product-brand-badge">Knorr</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Sazonadores</div>
+        <div class="product-name">Knorr Caldo de Pollo 1kg</div>
+        <div class="product-desc">Caldo en polvo sabor pollo. El condimento más usado en cocinas mexicanas.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AKnorr%20Caldo%20de%20Pollo%201kg%2A%20(Knorr).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="13">
+      <div class="product-img">
+        🥩
+        <div class="product-brand-badge">Knorr</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Sazonadores</div>
+        <div class="product-name">Knorr Caldo de Res 1kg</div>
+        <div class="product-desc">Caldo de res en polvo. Canal institucional y restaurantes.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AKnorr%20Caldo%20de%20Res%201kg%2A%20(Knorr).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="14">
+      <div class="product-img">
+        🟡
+        <div class="product-brand-badge">Knorr</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Sazonadores</div>
+        <div class="product-name">Knorr Suiza 200g</div>
+        <div class="product-desc">Sazonador líquido multiusos. Cocinas de alto volumen.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AKnorr%20Suiza%20200g%2A%20(Knorr).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="15">
+      <div class="product-img">
+        🫙
+        <div class="product-brand-badge">Maggi</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Sazonadores</div>
+        <div class="product-name">Maggi Jugo Sazonador 200ml</div>
+        <div class="product-desc">Sazonador líquido estrella Maggi. Básico en toda cocina mexicana.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMaggi%20Jugo%20Sazonador%20200ml%2A%20(Maggi).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="16">
+      <div class="product-img">
+        🫙
+        <div class="product-brand-badge">Maggi</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Sazonadores</div>
+        <div class="product-name">Maggi Jugo Sazonador 750ml</div>
+        <div class="product-desc">Presentación grande para foodservice y cocinas industriales.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMaggi%20Jugo%20Sazonador%20750ml%2A%20(Maggi).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="17">
+      <div class="product-img">
+        🌽
+        <div class="product-brand-badge">Maseca</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Harinas</div>
+        <div class="product-name">Maseca Harina Maíz 1kg</div>
+        <div class="product-desc">Harina de maíz nixtamalizada. Básico absoluto en cocinas mexicanas.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMaseca%20Harina%20Maíz%201kg%2A%20(Maseca).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="18">
+      <div class="product-img">
+        🌽
+        <div class="product-brand-badge">Maseca</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Harinas</div>
+        <div class="product-name">Maseca Harina Maíz 5kg</div>
+        <div class="product-desc">Presentación familiar para tortillerías y comedores.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMaseca%20Harina%20Maíz%205kg%2A%20(Maseca).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="19">
+      <div class="product-img">
+        🫙
+        <div class="product-brand-badge">Clabber Girl</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Harinas</div>
+        <div class="product-name">Clabber Girl Polvo para Hornear</div>
+        <div class="product-desc">Polvo para hornear. Canal panaderías y pastelerías.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AClabber%20Girl%20Polvo%20para%20Hornear%2A%20(Clabber%20Girl).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="20">
+      <div class="product-img">
+        🌾
+        <div class="product-brand-badge">Maizena</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Sazonadores</div>
+        <div class="product-name">Maizena Fécula 500g</div>
+        <div class="product-desc">Fécula de maíz. Básico en repostería y cocinas.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMaizena%20Fécula%20500g%2A%20(Maizena).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="21">
+      <div class="product-img">
+        🍝
+        <div class="product-brand-badge">Barilla</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Pastas</div>
+        <div class="product-name">Barilla Espagueti 500g</div>
+        <div class="product-desc">Pasta espagueti premium. Canal restaurantes y autoservicio.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ABarilla%20Espagueti%20500g%2A%20(Barilla).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="22">
+      <div class="product-img">
+        🍝
+        <div class="product-brand-badge">La Moderna</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Pastas</div>
+        <div class="product-name">La Moderna Espagueti 200g</div>
+        <div class="product-desc">Pasta económica. Alta rotación en abarrotes y mayoreo.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ALa%20Moderna%20Espagueti%20200g%2A%20(La%20Moderna).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="23">
+      <div class="product-img">
+        🍝
+        <div class="product-brand-badge">La Moderna</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Pastas</div>
+        <div class="product-name">La Moderna Codito 200g</div>
+        <div class="product-desc">Coditos para sopa. Clásico en cocinas mexicanas.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ALa%20Moderna%20Codito%20200g%2A%20(La%20Moderna).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="24">
+      <div class="product-img">
+        🍚
+        <div class="product-brand-badge">SOS</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Arroz</div>
+        <div class="product-name">Arroz SOS Largo 1kg</div>
+        <div class="product-desc">Arroz de grano largo. Básico en comedores e institucional.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AArroz%20SOS%20Largo%201kg%2A%20(SOS).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="25">
+      <div class="product-img">
+        🍚
+        <div class="product-brand-badge">Verde Valle</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Arroz</div>
+        <div class="product-name">Arroz Verde Valle 1kg</div>
+        <div class="product-desc">Arroz nacional. Alta rotación en todo el canal mayoreo.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AArroz%20Verde%20Valle%201kg%2A%20(Verde%20Valle).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="26">
+      <div class="product-img">
+        🫘
+        <div class="product-brand-badge">Verde Valle</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Frijol Grano</div>
+        <div class="product-name">Frijol Flor de Mayo 1kg</div>
+        <div class="product-desc">Frijol de grano. Básico irrenunciable en surtido de abarrotes.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AFrijol%20Flor%20de%20Mayo%201kg%2A%20(Verde%20Valle).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="27">
+      <div class="product-img">
+        ⚫
+        <div class="product-brand-badge">Verde Valle</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Frijol Grano</div>
+        <div class="product-name">Frijol Negro 1kg</div>
+        <div class="product-desc">Frijol negro. Fuerte en sur y sureste del país.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AFrijol%20Negro%201kg%2A%20(Verde%20Valle).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="28">
+      <div class="product-img">
+        🍬
+        <div class="product-brand-badge">Zulka</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Azúcar</div>
+        <div class="product-name">Azúcar Estándar 1kg</div>
+        <div class="product-desc">Azúcar morena sin refinar Zulka. Tendencia health en crecimiento.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AAzúcar%20Estándar%201kg%2A%20(Zulka).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="29">
+      <div class="product-img">
+        🤍
+        <div class="product-brand-badge">La Abeja</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Azúcar</div>
+        <div class="product-name">Azúcar Refinada 1kg</div>
+        <div class="product-desc">Azúcar blanca refinada. Básico en panaderías y cafeterías.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AAzúcar%20Refinada%201kg%2A%20(La%20Abeja).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="30">
+      <div class="product-img">
+        🟡
+        <div class="product-brand-badge">Splenda</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Endulzantes</div>
+        <div class="product-name">Splenda Sobres x50</div>
+        <div class="product-desc">Endulzante sin calorías. Canal hoteles, restaurantes, oficinas.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ASplenda%20Sobres%20x50%2A%20(Splenda).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="31">
+      <div class="product-img">
+        🔵
+        <div class="product-brand-badge">Equal</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Endulzantes</div>
+        <div class="product-name">Equal Sobres x50</div>
+        <div class="product-desc">Endulzante clásico. Muy fuerte en foodservice y cafeterías.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AEqual%20Sobres%20x50%2A%20(Equal).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="32">
+      <div class="product-img">
+        🫙
+        <div class="product-brand-badge">Nutrioli</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Aceites</div>
+        <div class="product-name">Nutrioli Aceite 900ml</div>
+        <div class="product-desc">Aceite de girasol. Líder en aceites de cocina México.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ANutrioli%20Aceite%20900ml%2A%20(Nutrioli).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="33">
+      <div class="product-img">
+        🫙
+        <div class="product-brand-badge">Nutrioli</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Aceites</div>
+        <div class="product-name">Nutrioli Aceite 5L</div>
+        <div class="product-desc">Presentación familiar para cocinas de alto volumen.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ANutrioli%20Aceite%205L%2A%20(Nutrioli).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="34">
+      <div class="product-img">
+        🌻
+        <div class="product-brand-badge">Capullo</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Aceites</div>
+        <div class="product-name">Capullo Aceite 900ml</div>
+        <div class="product-desc">Aceite de cártamo Capullo. Opción light en aceites de cocina.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ACapullo%20Aceite%20900ml%2A%20(Capullo).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="35">
+      <div class="product-img">
+        🫒
+        <div class="product-brand-badge">Ragú</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Alimentos y Condimentos · Aceites</div>
+        <div class="product-name">Ragú Aceite de Oliva 500ml</div>
+        <div class="product-desc">Aceite de oliva extra virgen. Canal restaurantes premium.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ARagú%20Aceite%20de%20Oliva%20500ml%2A%20(Ragú).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cat-section" id="section-cereales" data-cat="cereales">
+  <div class="cat-section-header">
+    <div class="cat-section-title">
+      🌾 Cereales y Desayuno
+      <span class="cat-section-subtitle">13 productos</span>
+    </div>
+    <button class="btn-ver-todos" onclick="toggleSection(this, 'cereales')" data-cat="cereales">Ver todos →</button>
+  </div>
+  <div class="cat-products-grid">
+    <div class="product-card" data-index="0">
+      <div class="product-img">
+        🌾
+        <div class="product-brand-badge">Quaker</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Cereales y Desayuno · Avena</div>
+        <div class="product-name">Quaker Avena Tradicional 1kg</div>
+        <div class="product-desc">Avena en hojuelas. Básico institucional, hoteles y hospitales.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AQuaker%20Avena%20Tradicional%201kg%2A%20(Quaker).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="1">
+      <div class="product-img">
+        🥣
+        <div class="product-brand-badge">Quaker</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Cereales y Desayuno · Avena</div>
+        <div class="product-name">Quaker Avena Instantánea Cajita</div>
+        <div class="product-desc">Avena de preparación rápida. Canal escolar y foodservice.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AQuaker%20Avena%20Instantánea%20Cajita%2A%20(Quaker).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="2">
+      <div class="product-img">
+        🍓
+        <div class="product-brand-badge">Quaker</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Cereales y Desayuno · Cereales</div>
+        <div class="product-name">Quaker Granola Frutos Rojos</div>
+        <div class="product-desc">Granola premium con frutos rojos. Segmento health en crecimiento.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AQuaker%20Granola%20Frutos%20Rojos%2A%20(Quaker).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="3">
+      <div class="product-img">
+        🐯
+        <div class="product-brand-badge">Kellogg's</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Cereales y Desayuno · Cereales</div>
+        <div class="product-name">Zucaritas Kellogg's 500g</div>
+        <div class="product-desc">Cereal azucarado de maíz. El más vendido de Kellogg's México.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AZucaritas%20Kellogg's%20500g%2A%20(Kellogg's).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="4">
+      <div class="product-img">
+        🐊
+        <div class="product-brand-badge">Kellogg's</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Cereales y Desayuno · Cereales</div>
+        <div class="product-name">Choco Krispis 500g</div>
+        <div class="product-desc">Cereal de arroz con chocolate. Top 3 en ventas cereales México.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AChoco%20Krispis%20500g%2A%20(Kellogg's).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="5">
+      <div class="product-img">
+        ❤️
+        <div class="product-brand-badge">Kellogg's</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Cereales y Desayuno · Cereales</div>
+        <div class="product-name">Special K Rojo 340g</div>
+        <div class="product-desc">Cereal con frutos rojos. Canal salud y autoservicio premium.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ASpecial%20K%20Rojo%20340g%2A%20(Kellogg's).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="6">
+      <div class="product-img">
+        🌽
+        <div class="product-brand-badge">Kellogg's</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Cereales y Desayuno · Cereales</div>
+        <div class="product-name">Corn Flakes Kellogg's 500g</div>
+        <div class="product-desc">Hojuelas de maíz clásicas. Básico en institucional.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ACorn%20Flakes%20Kellogg's%20500g%2A%20(Kellogg's).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="7">
+      <div class="product-img">
+        ☕
+        <div class="product-brand-badge">Nescafé</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Cereales y Desayuno · Café</div>
+        <div class="product-name">Nescafé Clásico Frasco 100g</div>
+        <div class="product-desc">Café soluble clásico. El más vendido de México. Toda presentación.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ANescafé%20Clásico%20Frasco%20100g%2A%20(Nescafé).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="8">
+      <div class="product-img">
+        ☕
+        <div class="product-brand-badge">Nescafé</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Cereales y Desayuno · Café</div>
+        <div class="product-name">Nescafé Clásico Sobre 1.8g</div>
+        <div class="product-desc">Sobres individuales. Canal oficinas, hoteles, vending.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ANescafé%20Clásico%20Sobre%201.8g%2A%20(Nescafé).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="9">
+      <div class="product-img">
+        🟤
+        <div class="product-brand-badge">Nescafé</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Cereales y Desayuno · Café</div>
+        <div class="product-name">Nescafé Dolca 200g</div>
+        <div class="product-desc">Café suave Dolca. Alternativa económica en surtido básico.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ANescafé%20Dolca%20200g%2A%20(Nescafé).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="10">
+      <div class="product-img">
+        🍫
+        <div class="product-brand-badge">Abuelita</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Cereales y Desayuno · Modificadores</div>
+        <div class="product-name">Abuelita Chocolate Tablilla 540g</div>
+        <div class="product-desc">Chocolate para bebida caliente. Icónico en desayunos mexicanos.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AAbuelita%20Chocolate%20Tablilla%20540g%2A%20(Abuelita).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="11">
+      <div class="product-img">
+        🍫
+        <div class="product-brand-badge">Abuelita</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Cereales y Desayuno · Modificadores</div>
+        <div class="product-name">Cocoa Abuelita 400g</div>
+        <div class="product-desc">Polvo de cacao Abuelita. Canal institucional y cocinas.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ACocoa%20Abuelita%20400g%2A%20(Abuelita).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="12">
+      <div class="product-img">
+        🟩
+        <div class="product-brand-badge">Nestlé</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Cereales y Desayuno · Modificadores</div>
+        <div class="product-name">Milo Nestlé 400g</div>
+        <div class="product-desc">Maltodextrina y cacao. Fuerte en canal escolar y deportivo.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMilo%20Nestlé%20400g%2A%20(Nestlé).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cat-section" id="section-pan" data-cat="pan">
+  <div class="cat-section-header">
+    <div class="cat-section-title">
+      🍞 Pan y Pastelería
+      <span class="cat-section-subtitle">14 productos</span>
+    </div>
+    <button class="btn-ver-todos" onclick="toggleSection(this, 'pan')" data-cat="pan">Ver todos →</button>
+  </div>
+  <div class="cat-products-grid">
+    <div class="product-card" data-index="0">
+      <div class="product-img">
+        🍞
+        <div class="product-brand-badge">Bimbo</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Panadería</div>
+        <div class="product-name">Bimbo Pan Blanco Grande</div>
+        <div class="product-desc">Pan de caja blanco familiar. El pan más vendido de México.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ABimbo%20Pan%20Blanco%20Grande%2A%20(Bimbo).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="1">
+      <div class="product-img">
+        🌾
+        <div class="product-brand-badge">Bimbo</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Panadería</div>
+        <div class="product-name">Bimbo Pan Integral</div>
+        <div class="product-desc">Pan integral. Crecimiento sostenido en canal salud.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ABimbo%20Pan%20Integral%2A%20(Bimbo).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="2">
+      <div class="product-img">
+        🌿
+        <div class="product-brand-badge">Bimbo</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Panadería</div>
+        <div class="product-name">Bimbo Pan Multigrano</div>
+        <div class="product-desc">Pan con semillas y granos. Canal premium y autoservicio.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ABimbo%20Pan%20Multigrano%2A%20(Bimbo).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="3">
+      <div class="product-img">
+        🍞
+        <div class="product-brand-badge">Wonder</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Panadería</div>
+        <div class="product-name">Wonder Pan Blanco</div>
+        <div class="product-desc">Pan de caja clásico Wonder. Alternativa económica al Bimbo.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AWonder%20Pan%20Blanco%2A%20(Wonder).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="4">
+      <div class="product-img">
+        🎂
+        <div class="product-brand-badge">Marinela</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Pastelería</div>
+        <div class="product-name">Marinela Gansito 42g</div>
+        <div class="product-desc">Pastelito Gansito individual. Icónico de la repostería mexicana.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMarinela%20Gansito%2042g%2A%20(Marinela).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="5">
+      <div class="product-img">
+        📦
+        <div class="product-brand-badge">Marinela</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Pastelería</div>
+        <div class="product-name">Marinela Gansito Display x24</div>
+        <div class="product-desc">Display de 24 piezas. Presentación ideal para abarrotes.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMarinela%20Gansito%20Display%20x24%2A%20(Marinela).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="6">
+      <div class="product-img">
+        🐧
+        <div class="product-brand-badge">Marinela</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Pastelería</div>
+        <div class="product-name">Marinela Pingüinos</div>
+        <div class="product-desc">Pastel de chocolate relleno de crema. Top seller pasteles individuales.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMarinela%20Pingüinos%2A%20(Marinela).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="7">
+      <div class="product-img">
+        🍩
+        <div class="product-brand-badge">Marinela</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Pastelería</div>
+        <div class="product-name">Marinela Roles de Canela</div>
+        <div class="product-desc">Roles de canela empacados. Desayuno y canal escolar.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMarinela%20Roles%20de%20Canela%2A%20(Marinela).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="8">
+      <div class="product-img">
+        🟡
+        <div class="product-brand-badge">Marinela</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Pastelería</div>
+        <div class="product-name">Marinela Polvorones</div>
+        <div class="product-desc">Polvorones surtidos. Fuerte en temporada y canal institucional.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMarinela%20Polvorones%2A%20(Marinela).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="9">
+      <div class="product-img">
+        🍪
+        <div class="product-brand-badge">Gamesa</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Galletas</div>
+        <div class="product-name">Gamesa Marías 400g</div>
+        <div class="product-desc">Galletas Marías. La galleta más consumida de México. Varias presentaciones.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AGamesa%20Marías%20400g%2A%20(Gamesa).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="10">
+      <div class="product-img">
+        ⚫
+        <div class="product-brand-badge">Gamesa</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Galletas</div>
+        <div class="product-name">Gamesa Oreo 432g</div>
+        <div class="product-desc">Galletas Oreo surtido. Alta demanda en todos los canales.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AGamesa%20Oreo%20432g%2A%20(Gamesa).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="11">
+      <div class="product-img">
+        🍪
+        <div class="product-brand-badge">Gamesa</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Galletas</div>
+        <div class="product-name">Gamesa Chokis Chispas</div>
+        <div class="product-desc">Galletas con chispas de chocolate. Fuerte rotación en abarrotes.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AGamesa%20Chokis%20Chispas%2A%20(Gamesa).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="12">
+      <div class="product-img">
+        🔵
+        <div class="product-brand-badge">Gamesa</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Galletas</div>
+        <div class="product-name">Gamesa Emperador Chocolate</div>
+        <div class="product-desc">Galleta sándwich chocolate. Clásica en el portafolio Gamesa.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AGamesa%20Emperador%20Chocolate%2A%20(Gamesa).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="13">
+      <div class="product-img">
+        🟡
+        <div class="product-brand-badge">Gamesa</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Pan y Pastelería · Galletas</div>
+        <div class="product-name">Gamesa Saladitas 200g</div>
+        <div class="product-desc">Galletas saladas. Complemento básico de surtido de abarrotes.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AGamesa%20Saladitas%20200g%2A%20(Gamesa).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cat-section" id="section-enlatados" data-cat="enlatados">
+  <div class="cat-section-header">
+    <div class="cat-section-title">
+      🥫 Enlatados y Conservas
+      <span class="cat-section-subtitle">15 productos</span>
+    </div>
+    <button class="btn-ver-todos" onclick="toggleSection(this, 'enlatados')" data-cat="enlatados">Ver todos →</button>
+  </div>
+  <div class="cat-products-grid">
+    <div class="product-card" data-index="0">
+      <div class="product-img">
+        🫙
+        <div class="product-brand-badge">La Costeña</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Chiles Conserva</div>
+        <div class="product-name">La Costeña Chiles Jalapeños 380g</div>
+        <div class="product-desc">Jalapeños en escabeche. Imprescindible en toda mesa mexicana.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ALa%20Costeña%20Chiles%20Jalapeños%20380g%2A%20(La%20Costeña).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="1">
+      <div class="product-img">
+        🌶️
+        <div class="product-brand-badge">La Costeña</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Chiles Conserva</div>
+        <div class="product-name">La Costeña Chiles Chipotles 220g</div>
+        <div class="product-desc">Chipotles en adobo. Uso intensivo en cocinas y restaurantes.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ALa%20Costeña%20Chiles%20Chipotles%20220g%2A%20(La%20Costeña).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="2">
+      <div class="product-img">
+        🫘
+        <div class="product-brand-badge">La Costeña</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Frijol Lata/Pouch</div>
+        <div class="product-name">La Costeña Frijoles Negros 560g</div>
+        <div class="product-desc">Frijoles negros enteros. Básico institucional.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ALa%20Costeña%20Frijoles%20Negros%20560g%2A%20(La%20Costeña).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="3">
+      <div class="product-img">
+        🟤
+        <div class="product-brand-badge">La Costeña</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Frijol Lata/Pouch</div>
+        <div class="product-name">La Costeña Frijoles Refritos 560g</div>
+        <div class="product-desc">Frijoles refritos listos para calentar. Alta rotación en foodservice.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ALa%20Costeña%20Frijoles%20Refritos%20560g%2A%20(La%20Costeña).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="4">
+      <div class="product-img">
+        🟢
+        <div class="product-brand-badge">La Costeña</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Chiles Conserva</div>
+        <div class="product-name">La Costeña Chiles Serranos 220g</div>
+        <div class="product-desc">Serranos en escabeche. Complemento del portafolio chiles.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ALa%20Costeña%20Chiles%20Serranos%20220g%2A%20(La%20Costeña).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="5">
+      <div class="product-img">
+        🍫
+        <div class="product-brand-badge">Herdez</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Conservas</div>
+        <div class="product-name">Herdez Mole Rojo 235g</div>
+        <div class="product-desc">Mole rojo listo para usar. Gran demanda en cocinas y restaurantes.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AHerdez%20Mole%20Rojo%20235g%2A%20(Herdez).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="6">
+      <div class="product-img">
+        ⚫
+        <div class="product-brand-badge">Clemente Jacques</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Conservas</div>
+        <div class="product-name">Clemente Jacques Mole Negro 235g</div>
+        <div class="product-desc">Mole negro estilo Oaxaca. Canal restaurantes y hoteles.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AClemente%20Jacques%20Mole%20Negro%20235g%2A%20(Clemente%20Jacques).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="7">
+      <div class="product-img">
+        🍑
+        <div class="product-brand-badge">Del Monte</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Frutas Almíbar</div>
+        <div class="product-name">Del Monte Duraznos Mitades 820g</div>
+        <div class="product-desc">Duraznos en almíbar. Clásico de la despensa mexicana.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ADel%20Monte%20Duraznos%20Mitades%20820g%2A%20(Del%20Monte).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="8">
+      <div class="product-img">
+        🍍
+        <div class="product-brand-badge">Del Monte</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Frutas Almíbar</div>
+        <div class="product-name">Del Monte Piña en Trozos 820g</div>
+        <div class="product-desc">Piña en almíbar en trozos. Canal repostería e institucional.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ADel%20Monte%20Piña%20en%20Trozos%20820g%2A%20(Del%20Monte).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="9">
+      <div class="product-img">
+        🟩
+        <div class="product-brand-badge">Del Monte</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Vegetales Enlatados</div>
+        <div class="product-name">Del Monte Chícharos 225g</div>
+        <div class="product-desc">Chícharos enlatados. Uso en cocinas y comedores.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ADel%20Monte%20Chícharos%20225g%2A%20(Del%20Monte).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="10">
+      <div class="product-img">
+        🐟
+        <div class="product-brand-badge">Dolores</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Atunes</div>
+        <div class="product-name">Atún Dolores Agua 140g</div>
+        <div class="product-desc">Atún en agua. Alta rotación en abarrotes y misceláneas.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AAtún%20Dolores%20Agua%20140g%2A%20(Dolores).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="11">
+      <div class="product-img">
+        🐟
+        <div class="product-brand-badge">Herdez</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Atunes</div>
+        <div class="product-name">Atún Herdez Agua 140g</div>
+        <div class="product-desc">Atún en agua Herdez. Alternativa de marca nacional.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AAtún%20Herdez%20Agua%20140g%2A%20(Herdez).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="12">
+      <div class="product-img">
+        🍜
+        <div class="product-brand-badge">Maruchan</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Sopas Instantáneas</div>
+        <div class="product-name">Maruchan Sopa Instantánea Pollo</div>
+        <div class="product-desc">Sopa ramen sabor pollo. La instantánea más vendida de México.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMaruchan%20Sopa%20Instantánea%20Pollo%2A%20(Maruchan).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="13">
+      <div class="product-img">
+        🍜
+        <div class="product-brand-badge">Maruchan</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Sopas Instantáneas</div>
+        <div class="product-name">Maruchan Sopa Instantánea Res</div>
+        <div class="product-desc">Sopa ramen sabor res. Complemento básico del portafolio.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMaruchan%20Sopa%20Instantánea%20Res%2A%20(Maruchan).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="14">
+      <div class="product-img">
+        🍅
+        <div class="product-brand-badge">Knorr</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Enlatados y Conservas · Sopas Instantáneas</div>
+        <div class="product-name">Knorr Sopa de Letras Tomate</div>
+        <div class="product-desc">Sopas Knorr clásicas. Fuerte en canal abarrotes y mayoreo.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AKnorr%20Sopa%20de%20Letras%20Tomate%2A%20(Knorr).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cat-section" id="section-lacteos" data-cat="lacteos">
+  <div class="cat-section-header">
+    <div class="cat-section-title">
+      🥛 Lácteos
+      <span class="cat-section-subtitle">6 productos</span>
+    </div>
+    <button class="btn-ver-todos" onclick="toggleSection(this, 'lacteos')" data-cat="lacteos">Ver todos →</button>
+  </div>
+  <div class="cat-products-grid">
+    <div class="product-card" data-index="0">
+      <div class="product-img">
+        🥛
+        <div class="product-brand-badge">Lala</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Lácteos · Leche/Lácteos</div>
+        <div class="product-name">Lala Leche Entera 1L</div>
+        <div class="product-desc">Leche entera UHT. Líder en el noreste de México.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ALala%20Leche%20Entera%201L%2A%20(Lala).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="1">
+      <div class="product-img">
+        🥛
+        <div class="product-brand-badge">Lala</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Lácteos · Leche/Lácteos</div>
+        <div class="product-name">Lala Leche Light 1L</div>
+        <div class="product-desc">Leche semi-descremada. Canal health y dieta.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ALala%20Leche%20Light%201L%2A%20(Lala).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="2">
+      <div class="product-img">
+        🥛
+        <div class="product-brand-badge">Alpura</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Lácteos · Leche/Lácteos</div>
+        <div class="product-name">Alpura Leche Entera 1L</div>
+        <div class="product-desc">Leche entera Alpura. Segunda marca en presencia nacional.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AAlpura%20Leche%20Entera%201L%2A%20(Alpura).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="3">
+      <div class="product-img">
+        🤍
+        <div class="product-brand-badge">Nestlé</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Lácteos · Leche/Lácteos</div>
+        <div class="product-name">Nestlé La Lechera 397g</div>
+        <div class="product-desc">Leche condensada. Básico repostería y cafeterías.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ANestlé%20La%20Lechera%20397g%2A%20(Nestlé).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="4">
+      <div class="product-img">
+        🥛
+        <div class="product-brand-badge">Carnation</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Lácteos · Leche/Lácteos</div>
+        <div class="product-name">Carnation Clavel Evaporada</div>
+        <div class="product-desc">Leche evaporada. Canal cocinas y postres institucional.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ACarnation%20Clavel%20Evaporada%2A%20(Carnation).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="5">
+      <div class="product-img">
+        🤍
+        <div class="product-brand-badge">Lala</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Lácteos · Leche/Lácteos</div>
+        <div class="product-name">Lala Crema Ácida 400ml</div>
+        <div class="product-desc">Crema ácida. Uso intensivo en cocinas y restaurantes norteños.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ALala%20Crema%20Ácida%20400ml%2A%20(Lala).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="cat-section" id="section-dulces" data-cat="dulces">
+  <div class="cat-section-header">
+    <div class="cat-section-title">
+      🍬 Dulces
+      <span class="cat-section-subtitle">6 productos</span>
+    </div>
+    <button class="btn-ver-todos" onclick="toggleSection(this, 'dulces')" data-cat="dulces">Ver todos →</button>
+  </div>
+  <div class="cat-products-grid">
+    <div class="product-card" data-index="0">
+      <div class="product-img">
+        🍫
+        <div class="product-brand-badge">Ricolino</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Dulces · Chocolate</div>
+        <div class="product-name">Ricolino Bubulubu</div>
+        <div class="product-desc">Barra de chocolate y cajeta. Top seller dulces individuales.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ARicolino%20Bubulubu%2A%20(Ricolino).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="1">
+      <div class="product-img">
+        🍭
+        <div class="product-brand-badge">Ricolino</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Dulces · Chocolate</div>
+        <div class="product-name">Ricolino Paleta Payaso</div>
+        <div class="product-desc">Paleta de chocolate con caramelo. Icónica en tiendas de barrio.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2ARicolino%20Paleta%20Payaso%2A%20(Ricolino).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="2">
+      <div class="product-img">
+        👑
+        <div class="product-brand-badge">Nestlé</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Dulces · Chocolate</div>
+        <div class="product-name">Chocolate Carlos V</div>
+        <div class="product-desc">Barrita de chocolate con leche. Clásico irrenunciable mexicano.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AChocolate%20Carlos%20V%2A%20(Nestlé).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card" data-index="3">
+      <div class="product-img">
+        🥭
+        <div class="product-brand-badge">De la Rosa</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Dulces · Dulces Típicos</div>
+        <div class="product-name">Pulparindo Mango</div>
+        <div class="product-desc">Dulce de pulpa de tamarindo sabor mango. Alta rotación en abarrotes.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2APulparindo%20Mango%2A%20(De%20la%20Rosa).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="4">
+      <div class="product-img">
+        🟡
+        <div class="product-brand-badge">De la Rosa</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Dulces · Dulces Típicos</div>
+        <div class="product-name">Mazapán De la Rosa</div>
+        <div class="product-desc">Mazapán de cacahuate. Ícono de la confitería mexicana.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AMazapán%20De%20la%20Rosa%2A%20(De%20la%20Rosa).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+    <div class="product-card product-card-hidden" data-index="5">
+      <div class="product-img">
+        🟤
+        <div class="product-brand-badge">Glorias</div>
+      </div>
+      <div class="product-info">
+        <div class="product-cat">Dulces · Dulces Típicos</div>
+        <div class="product-name">Glorias Norteñas</div>
+        <div class="product-desc">Dulce de leche de cabra. Especialidad norteña de alta demanda.</div>
+        <a href="https://wa.me/528112345678?text=Hola%2C%20me%20interesa%20cotizar%3A%20%2AGlorias%20Norteñas%2A%20(Glorias).%20%C2%BFPodrían%20enviarme%20información%20de%20disponibilidad%20y%20precios%3F" target="_blank" class="btn-cotizar">
+          Solicitar cotización →
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </div>
   </div>
 </section>
 
@@ -1486,86 +3465,103 @@ function toggleMenu() {
 
 // ─── PRODUCTOS DATA ───
 const WA_NUM = '528112345678';
+const products = [{"id": 1, "name": "Sabritas Clásicas Familiar", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🥔", "desc": "Papas fritas originales en presentación familiar. La más vendida de México."}, {"id": 2, "name": "Sabritas Clásicas Chica", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🥔", "desc": "Presentación individual. Alta rotación en punto de venta."}, {"id": 3, "name": "Cheetos Flamin' Hot Familiar", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🌶️", "desc": "Botana de maíz con chile. Top seller segmento picante."}, {"id": 4, "name": "Cheetos Horneados", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🧡", "desc": "Versión horneada, menor grasa. Canal health-conscious."}, {"id": 5, "name": "Doritos Nacho Familiar", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🔺", "desc": "Totopos triangulares sabor nacho. Icónico portafolio PepsiCo."}, {"id": 6, "name": "Doritos Flamas", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🔥", "desc": "Sabor picante-limón. Alta demanda en tiendas de conveniencia."}, {"id": 7, "name": "Ruffles Queso", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🧀", "desc": "Papas onduladas sabor queso. Fuerte en canal mayoreo."}, {"id": 8, "name": "Ruffles Crema y Especias", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🥔", "desc": "Sabor crema. Complemento del portafolio Ruffles."}, {"id": 9, "name": "Takis Fuego", "brand": "Barcel", "cat": "botanas", "sub": "Fritura", "emoji": "🌮", "desc": "Tortillitas enrolladas picantes. Uno de los snacks más demandados."}, {"id": 10, "name": "Takis Verde", "brand": "Barcel", "cat": "botanas", "sub": "Fritura", "emoji": "🟢", "desc": "Sabor chile verde y limón. Variante popular del portafolio Takis."}, {"id": 11, "name": "Barcel Chips Chile", "brand": "Barcel", "cat": "botanas", "sub": "Fritura", "emoji": "🍟", "desc": "Papas con chile y limón. Clásico abarrotes mexicanos."}, {"id": 12, "name": "Barcel Chips Fuego", "brand": "Barcel", "cat": "botanas", "sub": "Fritura", "emoji": "🔴", "desc": "Sabor fuego intenso. Alta rotación tiendas de barrio."}, {"id": 13, "name": "Barcel Hot Nuts", "brand": "Barcel", "cat": "botanas", "sub": "Cacahuate", "emoji": "🥜", "desc": "Cacahuates enchilados Barcel. Snack de bolsillo, gran margen."}, {"id": 14, "name": "Barcel Runners Enchilados", "brand": "Barcel", "cat": "botanas", "sub": "Cacahuate", "emoji": "🥜", "desc": "Cacahuates con chile. Fuerte presencia en abarrotes."}, {"id": 15, "name": "Cacahuates Japoneses Mafer", "brand": "Mafer", "cat": "botanas", "sub": "Cacahuate", "emoji": "🟤", "desc": "Cacahuates estilo japonés. Presentaciones 180g y 500g."}, {"id": 16, "name": "Cacahuates Tostados Mafer", "brand": "Mafer", "cat": "botanas", "sub": "Cacahuate", "emoji": "🥜", "desc": "Cacahuates tostados salados. Básico en el surtido de botanas."}, {"id": 17, "name": "Fritos Originales", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🌽", "desc": "Tiras de maíz fritas. Clásico que nunca falla en tiendas."}, {"id": 18, "name": "Tostitos con Queso", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🔶", "desc": "Totopos redondos con dip de queso incluido. Canal impulso."}, {"id": 19, "name": "Peñafiel Mineral s/Gas 600ml", "brand": "Peñafiel", "cat": "bebidas", "sub": "Agua Embotellada", "emoji": "💧", "desc": "Agua mineral natural sin gas. Presentación individual."}, {"id": 20, "name": "Peñafiel Mineral c/Gas 600ml", "brand": "Peñafiel", "cat": "bebidas", "sub": "Agua Embotellada", "emoji": "🫧", "desc": "Agua mineral con gas. Para mesa y bar."}, {"id": 21, "name": "Peñafiel Toronja Lata", "brand": "Peñafiel", "cat": "bebidas", "sub": "Refrescos", "emoji": "🍊", "desc": "Refresco de toronja en lata 355ml. Muy fuerte en NL y norte."}, {"id": 22, "name": "Peñafiel Limón Lata", "brand": "Peñafiel", "cat": "bebidas", "sub": "Refrescos", "emoji": "🍋", "desc": "Refresco de limón. Surtido básico mayoreo."}, {"id": 23, "name": "Peñafiel Manzana Lata", "brand": "Peñafiel", "cat": "bebidas", "sub": "Refrescos", "emoji": "🍎", "desc": "Refresco sabor manzana en lata. Complemento del portafolio."}, {"id": 24, "name": "Clamato Original 946ml", "brand": "Clamato", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🍅", "desc": "Jugo de tomate y almeja. Base micheladas y cócteles. Fuerte en foodservice."}, {"id": 25, "name": "Clamato Preparado 946ml", "brand": "Clamato", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🥂", "desc": "Listo para beber con chile y limón. Canal restaurantes y hoteles."}, {"id": 26, "name": "Jumex Mango Lata 335ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🥭", "desc": "Néctar de mango. El sabor más vendido de Jumex."}, {"id": 27, "name": "Jumex Durazno Lata 335ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🍑", "desc": "Néctar de durazno. Sabor ancla del portafolio Jumex."}, {"id": 28, "name": "Jumex Guayaba Lata 335ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🟡", "desc": "Néctar de guayaba. Alta rotación en abarrotes y misceláneas."}, {"id": 29, "name": "Jumex Naranja Lata 335ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🍊", "desc": "Néctar de naranja. Versión lata para canal mayoreo."}, {"id": 30, "name": "Jumex Tetra Fresa 200ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🍓", "desc": "Agua de fresa en Tetra. Ideal para lunch box y primaria."}, {"id": 31, "name": "Jumex Tetra Jamaica 200ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🌺", "desc": "Agua de jamaica en Tetra. Sabor mexicano por excelencia."}, {"id": 32, "name": "Jumex Tetra Tamarindo 200ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🟫", "desc": "Agua de tamarindo. Fuerte rotación en canal escolar."}, {"id": 33, "name": "Boing Mango 500ml", "brand": "Boing", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🥭", "desc": "Bebida de mango en presentación PET. Icónico mexicano."}, {"id": 34, "name": "Boing Guayaba 500ml", "brand": "Boing", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🟡", "desc": "Bebida de guayaba. Alta demanda en canal abarrotes."}, {"id": 35, "name": "Quaker Avena Tradicional 1kg", "brand": "Quaker", "cat": "cereales", "sub": "Avena", "emoji": "🌾", "desc": "Avena en hojuelas. Básico institucional, hoteles y hospitales."}, {"id": 36, "name": "Quaker Avena Instantánea Cajita", "brand": "Quaker", "cat": "cereales", "sub": "Avena", "emoji": "🥣", "desc": "Avena de preparación rápida. Canal escolar y foodservice."}, {"id": 37, "name": "Quaker Granola Frutos Rojos", "brand": "Quaker", "cat": "cereales", "sub": "Cereales", "emoji": "🍓", "desc": "Granola premium con frutos rojos. Segmento health en crecimiento."}, {"id": 38, "name": "Zucaritas Kellogg's 500g", "brand": "Kellogg's", "cat": "cereales", "sub": "Cereales", "emoji": "🐯", "desc": "Cereal azucarado de maíz. El más vendido de Kellogg's México."}, {"id": 39, "name": "Choco Krispis 500g", "brand": "Kellogg's", "cat": "cereales", "sub": "Cereales", "emoji": "🐊", "desc": "Cereal de arroz con chocolate. Top 3 en ventas cereales México."}, {"id": 40, "name": "Special K Rojo 340g", "brand": "Kellogg's", "cat": "cereales", "sub": "Cereales", "emoji": "❤️", "desc": "Cereal con frutos rojos. Canal salud y autoservicio premium."}, {"id": 41, "name": "Corn Flakes Kellogg's 500g", "brand": "Kellogg's", "cat": "cereales", "sub": "Cereales", "emoji": "🌽", "desc": "Hojuelas de maíz clásicas. Básico en institucional."}, {"id": 42, "name": "Nescafé Clásico Frasco 100g", "brand": "Nescafé", "cat": "cereales", "sub": "Café", "emoji": "☕", "desc": "Café soluble clásico. El más vendido de México. Toda presentación."}, {"id": 43, "name": "Nescafé Clásico Sobre 1.8g", "brand": "Nescafé", "cat": "cereales", "sub": "Café", "emoji": "☕", "desc": "Sobres individuales. Canal oficinas, hoteles, vending."}, {"id": 44, "name": "Nescafé Dolca 200g", "brand": "Nescafé", "cat": "cereales", "sub": "Café", "emoji": "🟤", "desc": "Café suave Dolca. Alternativa económica en surtido básico."}, {"id": 45, "name": "Abuelita Chocolate Tablilla 540g", "brand": "Abuelita", "cat": "cereales", "sub": "Modificadores", "emoji": "🍫", "desc": "Chocolate para bebida caliente. Icónico en desayunos mexicanos."}, {"id": 46, "name": "Cocoa Abuelita 400g", "brand": "Abuelita", "cat": "cereales", "sub": "Modificadores", "emoji": "🍫", "desc": "Polvo de cacao Abuelita. Canal institucional y cocinas."}, {"id": 47, "name": "Milo Nestlé 400g", "brand": "Nestlé", "cat": "cereales", "sub": "Modificadores", "emoji": "🟩", "desc": "Maltodextrina y cacao. Fuerte en canal escolar y deportivo."}, {"id": 48, "name": "Bimbo Pan Blanco Grande", "brand": "Bimbo", "cat": "pan", "sub": "Panadería", "emoji": "🍞", "desc": "Pan de caja blanco familiar. El pan más vendido de México."}, {"id": 49, "name": "Bimbo Pan Integral", "brand": "Bimbo", "cat": "pan", "sub": "Panadería", "emoji": "🌾", "desc": "Pan integral. Crecimiento sostenido en canal salud."}, {"id": 50, "name": "Bimbo Pan Multigrano", "brand": "Bimbo", "cat": "pan", "sub": "Panadería", "emoji": "🌿", "desc": "Pan con semillas y granos. Canal premium y autoservicio."}, {"id": 51, "name": "Wonder Pan Blanco", "brand": "Wonder", "cat": "pan", "sub": "Panadería", "emoji": "🍞", "desc": "Pan de caja clásico Wonder. Alternativa económica al Bimbo."}, {"id": 52, "name": "Marinela Gansito 42g", "brand": "Marinela", "cat": "pan", "sub": "Pastelería", "emoji": "🎂", "desc": "Pastelito Gansito individual. Icónico de la repostería mexicana."}, {"id": 53, "name": "Marinela Gansito Display x24", "brand": "Marinela", "cat": "pan", "sub": "Pastelería", "emoji": "📦", "desc": "Display de 24 piezas. Presentación ideal para abarrotes."}, {"id": 54, "name": "Marinela Pingüinos", "brand": "Marinela", "cat": "pan", "sub": "Pastelería", "emoji": "🐧", "desc": "Pastel de chocolate relleno de crema. Top seller pasteles individuales."}, {"id": 55, "name": "Marinela Roles de Canela", "brand": "Marinela", "cat": "pan", "sub": "Pastelería", "emoji": "🍩", "desc": "Roles de canela empacados. Desayuno y canal escolar."}, {"id": 56, "name": "Marinela Polvorones", "brand": "Marinela", "cat": "pan", "sub": "Pastelería", "emoji": "🟡", "desc": "Polvorones surtidos. Fuerte en temporada y canal institucional."}, {"id": 57, "name": "Gamesa Marías 400g", "brand": "Gamesa", "cat": "pan", "sub": "Galletas", "emoji": "🍪", "desc": "Galletas Marías. La galleta más consumida de México. Varias presentaciones."}, {"id": 58, "name": "Gamesa Oreo 432g", "brand": "Gamesa", "cat": "pan", "sub": "Galletas", "emoji": "⚫", "desc": "Galletas Oreo surtido. Alta demanda en todos los canales."}, {"id": 59, "name": "Gamesa Chokis Chispas", "brand": "Gamesa", "cat": "pan", "sub": "Galletas", "emoji": "🍪", "desc": "Galletas con chispas de chocolate. Fuerte rotación en abarrotes."}, {"id": 60, "name": "Gamesa Emperador Chocolate", "brand": "Gamesa", "cat": "pan", "sub": "Galletas", "emoji": "🔵", "desc": "Galleta sándwich chocolate. Clásica en el portafolio Gamesa."}, {"id": 61, "name": "Gamesa Saladitas 200g", "brand": "Gamesa", "cat": "pan", "sub": "Galletas", "emoji": "🟡", "desc": "Galletas saladas. Complemento básico de surtido de abarrotes."}, {"id": 62, "name": "Heinz Catsup 397g", "brand": "Heinz", "cat": "alimentos", "sub": "Salsas y Aderezos", "emoji": "🍅", "desc": "Catsup clásica Heinz. Presentación mediana para retail."}, {"id": 63, "name": "Heinz Catsup Galón", "brand": "Heinz", "cat": "alimentos", "sub": "Salsas y Aderezos", "emoji": "🍅", "desc": "Galón para foodservice. Restaurantes y comedores institucionales."}, {"id": 64, "name": "Clemente Jacques Catsup 900g", "brand": "Clemente Jacques", "cat": "alimentos", "sub": "Salsas y Aderezos", "emoji": "🔴", "desc": "Catsup mexicana clásica. Alternativa nacional de alta rotación."}, {"id": 65, "name": "McCormick Mayonesa 400g", "brand": "McCormick", "cat": "alimentos", "sub": "Salsas y Aderezos", "emoji": "🤍", "desc": "Mayonesa clásica McCormick. Líder en el mercado mexicano."}, {"id": 66, "name": "McCormick Mayonesa 1kg", "brand": "McCormick", "cat": "alimentos", "sub": "Salsas y Aderezos", "emoji": "🤍", "desc": "Presentación 1kg para canal mayoreo y foodservice."}, {"id": 67, "name": "Hellmann's Mayonesa 930g", "brand": "Hellmann's", "cat": "alimentos", "sub": "Salsas y Aderezos", "emoji": "🟡", "desc": "Mayonesa premium. Canal autoservicio y restaurantes."}, {"id": 68, "name": "Valentina Salsa 370ml", "brand": "Valentina", "cat": "alimentos", "sub": "Salsas Botaneras", "emoji": "🌶️", "desc": "Salsa picante roja clásica. Básico irrenunciable en abarrotes."}, {"id": 69, "name": "Valentina Extra Picante 370ml", "brand": "Valentina", "cat": "alimentos", "sub": "Salsas Botaneras", "emoji": "🔴", "desc": "Versión extra picante. Alta rotación junto con la clásica."}, {"id": 70, "name": "Cholula Salsa Original 150ml", "brand": "Cholula", "cat": "alimentos", "sub": "Salsas Botaneras", "emoji": "🌶️", "desc": "Salsa artesanal premium. Canal restaurantes y hoteles finos."}, {"id": 71, "name": "Herdez Salsa Verde 220g", "brand": "Herdez", "cat": "alimentos", "sub": "Salsas de Mesa", "emoji": "🟢", "desc": "Salsa verde para cocinar. Top seller en salsas enlatadas."}, {"id": 72, "name": "Herdez Salsa Roja 220g", "brand": "Herdez", "cat": "alimentos", "sub": "Salsas de Mesa", "emoji": "🔴", "desc": "Salsa roja para cocinar. Imprescindible en cocinas mexicanas."}, {"id": 73, "name": "Herdez Guacamole 220g", "brand": "Herdez", "cat": "alimentos", "sub": "Salsas de Mesa", "emoji": "🥑", "desc": "Guacamole listo para usar. Canal foodservice y retail."}, {"id": 74, "name": "Knorr Caldo de Pollo 1kg", "brand": "Knorr", "cat": "alimentos", "sub": "Sazonadores", "emoji": "🍗", "desc": "Caldo en polvo sabor pollo. El condimento más usado en cocinas mexicanas."}, {"id": 75, "name": "Knorr Caldo de Res 1kg", "brand": "Knorr", "cat": "alimentos", "sub": "Sazonadores", "emoji": "🥩", "desc": "Caldo de res en polvo. Canal institucional y restaurantes."}, {"id": 76, "name": "Knorr Suiza 200g", "brand": "Knorr", "cat": "alimentos", "sub": "Sazonadores", "emoji": "🟡", "desc": "Sazonador líquido multiusos. Cocinas de alto volumen."}, {"id": 77, "name": "Maggi Jugo Sazonador 200ml", "brand": "Maggi", "cat": "alimentos", "sub": "Sazonadores", "emoji": "🫙", "desc": "Sazonador líquido estrella Maggi. Básico en toda cocina mexicana."}, {"id": 78, "name": "Maggi Jugo Sazonador 750ml", "brand": "Maggi", "cat": "alimentos", "sub": "Sazonadores", "emoji": "🫙", "desc": "Presentación grande para foodservice y cocinas industriales."}, {"id": 79, "name": "Maseca Harina Maíz 1kg", "brand": "Maseca", "cat": "alimentos", "sub": "Harinas", "emoji": "🌽", "desc": "Harina de maíz nixtamalizada. Básico absoluto en cocinas mexicanas."}, {"id": 80, "name": "Maseca Harina Maíz 5kg", "brand": "Maseca", "cat": "alimentos", "sub": "Harinas", "emoji": "🌽", "desc": "Presentación familiar para tortillerías y comedores."}, {"id": 81, "name": "Clabber Girl Polvo para Hornear", "brand": "Clabber Girl", "cat": "alimentos", "sub": "Harinas", "emoji": "🫙", "desc": "Polvo para hornear. Canal panaderías y pastelerías."}, {"id": 82, "name": "Maizena Fécula 500g", "brand": "Maizena", "cat": "alimentos", "sub": "Sazonadores", "emoji": "🌾", "desc": "Fécula de maíz. Básico en repostería y cocinas."}, {"id": 83, "name": "La Costeña Chiles Jalapeños 380g", "brand": "La Costeña", "cat": "enlatados", "sub": "Chiles Conserva", "emoji": "🫙", "desc": "Jalapeños en escabeche. Imprescindible en toda mesa mexicana."}, {"id": 84, "name": "La Costeña Chiles Chipotles 220g", "brand": "La Costeña", "cat": "enlatados", "sub": "Chiles Conserva", "emoji": "🌶️", "desc": "Chipotles en adobo. Uso intensivo en cocinas y restaurantes."}, {"id": 85, "name": "La Costeña Frijoles Negros 560g", "brand": "La Costeña", "cat": "enlatados", "sub": "Frijol Lata/Pouch", "emoji": "🫘", "desc": "Frijoles negros enteros. Básico institucional."}, {"id": 86, "name": "La Costeña Frijoles Refritos 560g", "brand": "La Costeña", "cat": "enlatados", "sub": "Frijol Lata/Pouch", "emoji": "🟤", "desc": "Frijoles refritos listos para calentar. Alta rotación en foodservice."}, {"id": 87, "name": "La Costeña Chiles Serranos 220g", "brand": "La Costeña", "cat": "enlatados", "sub": "Chiles Conserva", "emoji": "🟢", "desc": "Serranos en escabeche. Complemento del portafolio chiles."}, {"id": 88, "name": "Herdez Mole Rojo 235g", "brand": "Herdez", "cat": "enlatados", "sub": "Conservas", "emoji": "🍫", "desc": "Mole rojo listo para usar. Gran demanda en cocinas y restaurantes."}, {"id": 89, "name": "Clemente Jacques Mole Negro 235g", "brand": "Clemente Jacques", "cat": "enlatados", "sub": "Conservas", "emoji": "⚫", "desc": "Mole negro estilo Oaxaca. Canal restaurantes y hoteles."}, {"id": 90, "name": "Del Monte Duraznos Mitades 820g", "brand": "Del Monte", "cat": "enlatados", "sub": "Frutas Almíbar", "emoji": "🍑", "desc": "Duraznos en almíbar. Clásico de la despensa mexicana."}, {"id": 91, "name": "Del Monte Piña en Trozos 820g", "brand": "Del Monte", "cat": "enlatados", "sub": "Frutas Almíbar", "emoji": "🍍", "desc": "Piña en almíbar en trozos. Canal repostería e institucional."}, {"id": 92, "name": "Del Monte Chícharos 225g", "brand": "Del Monte", "cat": "enlatados", "sub": "Vegetales Enlatados", "emoji": "🟩", "desc": "Chícharos enlatados. Uso en cocinas y comedores."}, {"id": 93, "name": "Atún Dolores Agua 140g", "brand": "Dolores", "cat": "enlatados", "sub": "Atunes", "emoji": "🐟", "desc": "Atún en agua. Alta rotación en abarrotes y misceláneas."}, {"id": 94, "name": "Atún Herdez Agua 140g", "brand": "Herdez", "cat": "enlatados", "sub": "Atunes", "emoji": "🐟", "desc": "Atún en agua Herdez. Alternativa de marca nacional."}, {"id": 95, "name": "Maruchan Sopa Instantánea Pollo", "brand": "Maruchan", "cat": "enlatados", "sub": "Sopas Instantáneas", "emoji": "🍜", "desc": "Sopa ramen sabor pollo. La instantánea más vendida de México."}, {"id": 96, "name": "Maruchan Sopa Instantánea Res", "brand": "Maruchan", "cat": "enlatados", "sub": "Sopas Instantáneas", "emoji": "🍜", "desc": "Sopa ramen sabor res. Complemento básico del portafolio."}, {"id": 97, "name": "Knorr Sopa de Letras Tomate", "brand": "Knorr", "cat": "enlatados", "sub": "Sopas Instantáneas", "emoji": "🍅", "desc": "Sopas Knorr clásicas. Fuerte en canal abarrotes y mayoreo."}, {"id": 98, "name": "Barilla Espagueti 500g", "brand": "Barilla", "cat": "alimentos", "sub": "Pastas", "emoji": "🍝", "desc": "Pasta espagueti premium. Canal restaurantes y autoservicio."}, {"id": 99, "name": "La Moderna Espagueti 200g", "brand": "La Moderna", "cat": "alimentos", "sub": "Pastas", "emoji": "🍝", "desc": "Pasta económica. Alta rotación en abarrotes y mayoreo."}, {"id": 100, "name": "La Moderna Codito 200g", "brand": "La Moderna", "cat": "alimentos", "sub": "Pastas", "emoji": "🍝", "desc": "Coditos para sopa. Clásico en cocinas mexicanas."}, {"id": 101, "name": "Arroz SOS Largo 1kg", "brand": "SOS", "cat": "alimentos", "sub": "Arroz", "emoji": "🍚", "desc": "Arroz de grano largo. Básico en comedores e institucional."}, {"id": 102, "name": "Arroz Verde Valle 1kg", "brand": "Verde Valle", "cat": "alimentos", "sub": "Arroz", "emoji": "🍚", "desc": "Arroz nacional. Alta rotación en todo el canal mayoreo."}, {"id": 103, "name": "Frijol Flor de Mayo 1kg", "brand": "Verde Valle", "cat": "alimentos", "sub": "Frijol Grano", "emoji": "🫘", "desc": "Frijol de grano. Básico irrenunciable en surtido de abarrotes."}, {"id": 104, "name": "Frijol Negro 1kg", "brand": "Verde Valle", "cat": "alimentos", "sub": "Frijol Grano", "emoji": "⚫", "desc": "Frijol negro. Fuerte en sur y sureste del país."}, {"id": 105, "name": "Lala Leche Entera 1L", "brand": "Lala", "cat": "lacteos", "sub": "Leche/Lácteos", "emoji": "🥛", "desc": "Leche entera UHT. Líder en el noreste de México."}, {"id": 106, "name": "Lala Leche Light 1L", "brand": "Lala", "cat": "lacteos", "sub": "Leche/Lácteos", "emoji": "🥛", "desc": "Leche semi-descremada. Canal health y dieta."}, {"id": 107, "name": "Alpura Leche Entera 1L", "brand": "Alpura", "cat": "lacteos", "sub": "Leche/Lácteos", "emoji": "🥛", "desc": "Leche entera Alpura. Segunda marca en presencia nacional."}, {"id": 108, "name": "Nestlé La Lechera 397g", "brand": "Nestlé", "cat": "lacteos", "sub": "Leche/Lácteos", "emoji": "🤍", "desc": "Leche condensada. Básico repostería y cafeterías."}, {"id": 109, "name": "Carnation Clavel Evaporada", "brand": "Carnation", "cat": "lacteos", "sub": "Leche/Lácteos", "emoji": "🥛", "desc": "Leche evaporada. Canal cocinas y postres institucional."}, {"id": 110, "name": "Lala Crema Ácida 400ml", "brand": "Lala", "cat": "lacteos", "sub": "Leche/Lácteos", "emoji": "🤍", "desc": "Crema ácida. Uso intensivo en cocinas y restaurantes norteños."}, {"id": 111, "name": "Azúcar Estándar 1kg", "brand": "Zulka", "cat": "alimentos", "sub": "Azúcar", "emoji": "🍬", "desc": "Azúcar morena sin refinar Zulka. Tendencia health en crecimiento."}, {"id": 112, "name": "Azúcar Refinada 1kg", "brand": "La Abeja", "cat": "alimentos", "sub": "Azúcar", "emoji": "🤍", "desc": "Azúcar blanca refinada. Básico en panaderías y cafeterías."}, {"id": 113, "name": "Splenda Sobres x50", "brand": "Splenda", "cat": "alimentos", "sub": "Endulzantes", "emoji": "🟡", "desc": "Endulzante sin calorías. Canal hoteles, restaurantes, oficinas."}, {"id": 114, "name": "Equal Sobres x50", "brand": "Equal", "cat": "alimentos", "sub": "Endulzantes", "emoji": "🔵", "desc": "Endulzante clásico. Muy fuerte en foodservice y cafeterías."}, {"id": 115, "name": "Nutrioli Aceite 900ml", "brand": "Nutrioli", "cat": "alimentos", "sub": "Aceites", "emoji": "🫙", "desc": "Aceite de girasol. Líder en aceites de cocina México."}, {"id": 116, "name": "Nutrioli Aceite 5L", "brand": "Nutrioli", "cat": "alimentos", "sub": "Aceites", "emoji": "🫙", "desc": "Presentación familiar para cocinas de alto volumen."}, {"id": 117, "name": "Capullo Aceite 900ml", "brand": "Capullo", "cat": "alimentos", "sub": "Aceites", "emoji": "🌻", "desc": "Aceite de cártamo Capullo. Opción light en aceites de cocina."}, {"id": 118, "name": "Ragú Aceite de Oliva 500ml", "brand": "Ragú", "cat": "alimentos", "sub": "Aceites", "emoji": "🫒", "desc": "Aceite de oliva extra virgen. Canal restaurantes premium."}, {"id": 119, "name": "Ricolino Bubulubu", "brand": "Ricolino", "cat": "dulces", "sub": "Chocolate", "emoji": "🍫", "desc": "Barra de chocolate y cajeta. Top seller dulces individuales."}, {"id": 120, "name": "Ricolino Paleta Payaso", "brand": "Ricolino", "cat": "dulces", "sub": "Chocolate", "emoji": "🍭", "desc": "Paleta de chocolate con caramelo. Icónica en tiendas de barrio."}, {"id": 121, "name": "Chocolate Carlos V", "brand": "Nestlé", "cat": "dulces", "sub": "Chocolate", "emoji": "👑", "desc": "Barrita de chocolate con leche. Clásico irrenunciable mexicano."}, {"id": 122, "name": "Pulparindo Mango", "brand": "De la Rosa", "cat": "dulces", "sub": "Dulces Típicos", "emoji": "🥭", "desc": "Dulce de pulpa de tamarindo sabor mango. Alta rotación en abarrotes."}, {"id": 123, "name": "Mazapán De la Rosa", "brand": "De la Rosa", "cat": "dulces", "sub": "Dulces Típicos", "emoji": "🟡", "desc": "Mazapán de cacahuate. Ícono de la confitería mexicana."}, {"id": 124, "name": "Glorias Norteñas", "brand": "Glorias", "cat": "dulces", "sub": "Dulces Típicos", "emoji": "🟤", "desc": "Dulce de leche de cabra. Especialidad norteña de alta demanda."}];
 
-const products = [{"id": 1, "name": "Sabritas Clásicas Familiar", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🥔", "desc": "Papas fritas originales en presentación familiar. La más vendida de México."}, {"id": 2, "name": "Sabritas Clásicas Chica", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🥔", "desc": "Presentación individual. Alta rotación en punto de venta."}, {"id": 3, "name": "Cheetos Flamin' Hot Familiar", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🌶️", "desc": "Botana de maíz con chile. Top seller segmento picante."}, {"id": 4, "name": "Cheetos Horneados", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🧡", "desc": "Versión horneada, menor grasa. Canal health-conscious."}, {"id": 5, "name": "Doritos Nacho Familiar", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🔺", "desc": "Totopos triangulares sabor nacho. Icónico portafolio PepsiCo."}, {"id": 6, "name": "Doritos Flamas", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🔥", "desc": "Sabor picante-limón. Alta demanda en tiendas de conveniencia."}, {"id": 7, "name": "Ruffles Queso", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🧀", "desc": "Papas onduladas sabor queso. Fuerte en canal mayoreo."}, {"id": 8, "name": "Ruffles Crema y Especias", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🥔", "desc": "Sabor crema. Complemento del portafolio Ruffles."}, {"id": 9, "name": "Takis Fuego", "brand": "Barcel", "cat": "botanas", "sub": "Fritura", "emoji": "🌮", "desc": "Tortillitas enrolladas picantes. Uno de los snacks más demandados."}, {"id": 10, "name": "Takis Verde", "brand": "Barcel", "cat": "botanas", "sub": "Fritura", "emoji": "🟢", "desc": "Sabor chile verde y limón. Variante popular del portafolio Takis."}, {"id": 11, "name": "Barcel Chips Chile", "brand": "Barcel", "cat": "botanas", "sub": "Fritura", "emoji": "🍟", "desc": "Papas con chile y limón. Clásico abarrotes mexicanos."}, {"id": 12, "name": "Barcel Chips Fuego", "brand": "Barcel", "cat": "botanas", "sub": "Fritura", "emoji": "🔴", "desc": "Sabor fuego intenso. Alta rotación tiendas de barrio."}, {"id": 13, "name": "Barcel Hot Nuts", "brand": "Barcel", "cat": "botanas", "sub": "Cacahuate", "emoji": "🥜", "desc": "Cacahuates enchilados Barcel. Snack de bolsillo, gran margen."}, {"id": 14, "name": "Barcel Runners Enchilados", "brand": "Barcel", "cat": "botanas", "sub": "Cacahuate", "emoji": "🥜", "desc": "Cacahuates con chile. Fuerte presencia en abarrotes."}, {"id": 15, "name": "Cacahuates Japoneses Mafer", "brand": "Mafer", "cat": "botanas", "sub": "Cacahuate", "emoji": "🟤", "desc": "Cacahuates estilo japonés. Presentaciones 180g y 500g."}, {"id": 16, "name": "Cacahuates Tostados Mafer", "brand": "Mafer", "cat": "botanas", "sub": "Cacahuate", "emoji": "🥜", "desc": "Cacahuates tostados salados. Básico en el surtido de botanas."}, {"id": 17, "name": "Fritos Originales", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🌽", "desc": "Tiras de maíz fritas. Clásico que nunca falla en tiendas."}, {"id": 18, "name": "Tostitos con Queso", "brand": "Sabritas", "cat": "botanas", "sub": "Fritura", "emoji": "🔶", "desc": "Totopos redondos con dip de queso incluido. Canal impulso."}, {"id": 19, "name": "Peñafiel Mineral s/Gas 600ml", "brand": "Peñafiel", "cat": "bebidas", "sub": "Agua Embotellada", "emoji": "💧", "desc": "Agua mineral natural sin gas. Presentación individual."}, {"id": 20, "name": "Peñafiel Mineral c/Gas 600ml", "brand": "Peñafiel", "cat": "bebidas", "sub": "Agua Embotellada", "emoji": "🫧", "desc": "Agua mineral con gas. Para mesa y bar."}, {"id": 21, "name": "Peñafiel Toronja Lata", "brand": "Peñafiel", "cat": "bebidas", "sub": "Refrescos", "emoji": "🍊", "desc": "Refresco de toronja en lata 355ml. Muy fuerte en NL y norte."}, {"id": 22, "name": "Peñafiel Limón Lata", "brand": "Peñafiel", "cat": "bebidas", "sub": "Refrescos", "emoji": "🍋", "desc": "Refresco de limón. Surtido básico mayoreo."}, {"id": 23, "name": "Peñafiel Manzana Lata", "brand": "Peñafiel", "cat": "bebidas", "sub": "Refrescos", "emoji": "🍎", "desc": "Refresco sabor manzana en lata. Complemento del portafolio."}, {"id": 24, "name": "Clamato Original 946ml", "brand": "Clamato", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🍅", "desc": "Jugo de tomate y almeja. Base micheladas y cócteles. Fuerte en foodservice."}, {"id": 25, "name": "Clamato Preparado 946ml", "brand": "Clamato", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🥂", "desc": "Listo para beber con chile y limón. Canal restaurantes y hoteles."}, {"id": 26, "name": "Jumex Mango Lata 335ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🥭", "desc": "Néctar de mango. El sabor más vendido de Jumex."}, {"id": 27, "name": "Jumex Durazno Lata 335ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🍑", "desc": "Néctar de durazno. Sabor ancla del portafolio Jumex."}, {"id": 28, "name": "Jumex Guayaba Lata 335ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🟡", "desc": "Néctar de guayaba. Alta rotación en abarrotes y misceláneas."}, {"id": 29, "name": "Jumex Naranja Lata 335ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🍊", "desc": "Néctar de naranja. Versión lata para canal mayoreo."}, {"id": 30, "name": "Jumex Tetra Fresa 200ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🍓", "desc": "Agua de fresa en Tetra. Ideal para lunch box y primaria."}, {"id": 31, "name": "Jumex Tetra Jamaica 200ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🌺", "desc": "Agua de jamaica en Tetra. Sabor mexicano por excelencia."}, {"id": 32, "name": "Jumex Tetra Tamarindo 200ml", "brand": "Jumex", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🟫", "desc": "Agua de tamarindo. Fuerte rotación en canal escolar."}, {"id": 33, "name": "Boing Mango 500ml", "brand": "Boing", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🥭", "desc": "Bebida de mango en presentación PET. Icónico mexicano."}, {"id": 34, "name": "Boing Guayaba 500ml", "brand": "Boing", "cat": "bebidas", "sub": "Jugos y Néctares", "emoji": "🟡", "desc": "Bebida de guayaba. Alta demanda en canal abarrotes."}, {"id": 35, "name": "Quaker Avena Tradicional 1kg", "brand": "Quaker", "cat": "cereales", "sub": "Avena", "emoji": "🌾", "desc": "Avena en hojuelas. Básico institucional, hoteles y hospitales."}, {"id": 36, "name": "Quaker Avena Instantánea Cajita", "brand": "Quaker", "cat": "cereales", "sub": "Avena", "emoji": "🥣", "desc": "Avena de preparación rápida. Canal escolar y foodservice."}, {"id": 37, "name": "Quaker Granola Frutos Rojos", "brand": "Quaker", "cat": "cereales", "sub": "Cereales", "emoji": "🍓", "desc": "Granola premium con frutos rojos. Segmento health en crecimiento."}, {"id": 38, "name": "Zucaritas Kellogg's 500g", "brand": "Kellogg's", "cat": "cereales", "sub": "Cereales", "emoji": "🐯", "desc": "Cereal azucarado de maíz. El más vendido de Kellogg's México."}, {"id": 39, "name": "Choco Krispis 500g", "brand": "Kellogg's", "cat": "cereales", "sub": "Cereales", "emoji": "🐊", "desc": "Cereal de arroz con chocolate. Top 3 en ventas cereales México."}, {"id": 40, "name": "Special K Rojo 340g", "brand": "Kellogg's", "cat": "cereales", "sub": "Cereales", "emoji": "❤️", "desc": "Cereal con frutos rojos. Canal salud y autoservicio premium."}, {"id": 41, "name": "Corn Flakes Kellogg's 500g", "brand": "Kellogg's", "cat": "cereales", "sub": "Cereales", "emoji": "🌽", "desc": "Hojuelas de maíz clásicas. Básico en institucional."}, {"id": 42, "name": "Nescafé Clásico Frasco 100g", "brand": "Nescafé", "cat": "cereales", "sub": "Café", "emoji": "☕", "desc": "Café soluble clásico. El más vendido de México. Toda presentación."}, {"id": 43, "name": "Nescafé Clásico Sobre 1.8g", "brand": "Nescafé", "cat": "cereales", "sub": "Café", "emoji": "☕", "desc": "Sobres individuales. Canal oficinas, hoteles, vending."}, {"id": 44, "name": "Nescafé Dolca 200g", "brand": "Nescafé", "cat": "cereales", "sub": "Café", "emoji": "🟤", "desc": "Café suave Dolca. Alternativa económica en surtido básico."}, {"id": 45, "name": "Abuelita Chocolate Tablilla 540g", "brand": "Abuelita", "cat": "cereales", "sub": "Modificadores", "emoji": "🍫", "desc": "Chocolate para bebida caliente. Icónico en desayunos mexicanos."}, {"id": 46, "name": "Cocoa Abuelita 400g", "brand": "Abuelita", "cat": "cereales", "sub": "Modificadores", "emoji": "🍫", "desc": "Polvo de cacao Abuelita. Canal institucional y cocinas."}, {"id": 47, "name": "Milo Nestlé 400g", "brand": "Nestlé", "cat": "cereales", "sub": "Modificadores", "emoji": "🟩", "desc": "Maltodextrina y cacao. Fuerte en canal escolar y deportivo."}, {"id": 48, "name": "Bimbo Pan Blanco Grande", "brand": "Bimbo", "cat": "pan", "sub": "Panadería", "emoji": "🍞", "desc": "Pan de caja blanco familiar. El pan más vendido de México."}, {"id": 49, "name": "Bimbo Pan Integral", "brand": "Bimbo", "cat": "pan", "sub": "Panadería", "emoji": "🌾", "desc": "Pan integral. Crecimiento sostenido en canal salud."}, {"id": 50, "name": "Bimbo Pan Multigrano", "brand": "Bimbo", "cat": "pan", "sub": "Panadería", "emoji": "🌿", "desc": "Pan con semillas y granos. Canal premium y autoservicio."}, {"id": 51, "name": "Wonder Pan Blanco", "brand": "Wonder", "cat": "pan", "sub": "Panadería", "emoji": "🍞", "desc": "Pan de caja clásico Wonder. Alternativa económica al Bimbo."}, {"id": 52, "name": "Marinela Gansito 42g", "brand": "Marinela", "cat": "pan", "sub": "Pastelería", "emoji": "🎂", "desc": "Pastelito Gansito individual. Icónico de la repostería mexicana."}, {"id": 53, "name": "Marinela Gansito Display x24", "brand": "Marinela", "cat": "pan", "sub": "Pastelería", "emoji": "📦", "desc": "Display de 24 piezas. Presentación ideal para abarrotes."}, {"id": 54, "name": "Marinela Pingüinos", "brand": "Marinela", "cat": "pan", "sub": "Pastelería", "emoji": "🐧", "desc": "Pastel de chocolate relleno de crema. Top seller pasteles individuales."}, {"id": 55, "name": "Marinela Roles de Canela", "brand": "Marinela", "cat": "pan", "sub": "Pastelería", "emoji": "🍩", "desc": "Roles de canela empacados. Desayuno y canal escolar."}, {"id": 56, "name": "Marinela Polvorones", "brand": "Marinela", "cat": "pan", "sub": "Pastelería", "emoji": "🟡", "desc": "Polvorones surtidos. Fuerte en temporada y canal institucional."}, {"id": 57, "name": "Gamesa Marías 400g", "brand": "Gamesa", "cat": "pan", "sub": "Galletas", "emoji": "🍪", "desc": "Galletas Marías. La galleta más consumida de México. Varias presentaciones."}, {"id": 58, "name": "Gamesa Oreo 432g", "brand": "Gamesa", "cat": "pan", "sub": "Galletas", "emoji": "⚫", "desc": "Galletas Oreo surtido. Alta demanda en todos los canales."}, {"id": 59, "name": "Gamesa Chokis Chispas", "brand": "Gamesa", "cat": "pan", "sub": "Galletas", "emoji": "🍪", "desc": "Galletas con chispas de chocolate. Fuerte rotación en abarrotes."}, {"id": 60, "name": "Gamesa Emperador Chocolate", "brand": "Gamesa", "cat": "pan", "sub": "Galletas", "emoji": "🔵", "desc": "Galleta sándwich chocolate. Clásica en el portafolio Gamesa."}, {"id": 61, "name": "Gamesa Saladitas 200g", "brand": "Gamesa", "cat": "pan", "sub": "Galletas", "emoji": "🟡", "desc": "Galletas saladas. Complemento básico de surtido de abarrotes."}, {"id": 62, "name": "Heinz Catsup 397g", "brand": "Heinz", "cat": "alimentos", "sub": "Salsas y Aderezos", "emoji": "🍅", "desc": "Catsup clásica Heinz. Presentación mediana para retail."}, {"id": 63, "name": "Heinz Catsup Galón", "brand": "Heinz", "cat": "alimentos", "sub": "Salsas y Aderezos", "emoji": "🍅", "desc": "Galón para foodservice. Restaurantes y comedores institucionales."}, {"id": 64, "name": "Clemente Jacques Catsup 900g", "brand": "Clemente Jacques", "cat": "alimentos", "sub": "Salsas y Aderezos", "emoji": "🔴", "desc": "Catsup mexicana clásica. Alternativa nacional de alta rotación."}, {"id": 65, "name": "McCormick Mayonesa 400g", "brand": "McCormick", "cat": "alimentos", "sub": "Salsas y Aderezos", "emoji": "🤍", "desc": "Mayonesa clásica McCormick. Líder en el mercado mexicano."}, {"id": 66, "name": "McCormick Mayonesa 1kg", "brand": "McCormick", "cat": "alimentos", "sub": "Salsas y Aderezos", "emoji": "🤍", "desc": "Presentación 1kg para canal mayoreo y foodservice."}, {"id": 67, "name": "Hellmann's Mayonesa 930g", "brand": "Hellmann's", "cat": "alimentos", "sub": "Salsas y Aderezos", "emoji": "🟡", "desc": "Mayonesa premium. Canal autoservicio y restaurantes."}, {"id": 68, "name": "Valentina Salsa 370ml", "brand": "Valentina", "cat": "alimentos", "sub": "Salsas Botaneras", "emoji": "🌶️", "desc": "Salsa picante roja clásica. Básico irrenunciable en abarrotes."}, {"id": 69, "name": "Valentina Extra Picante 370ml", "brand": "Valentina", "cat": "alimentos", "sub": "Salsas Botaneras", "emoji": "🔴", "desc": "Versión extra picante. Alta rotación junto con la clásica."}, {"id": 70, "name": "Cholula Salsa Original 150ml", "brand": "Cholula", "cat": "alimentos", "sub": "Salsas Botaneras", "emoji": "🌶️", "desc": "Salsa artesanal premium. Canal restaurantes y hoteles finos."}, {"id": 71, "name": "Herdez Salsa Verde 220g", "brand": "Herdez", "cat": "alimentos", "sub": "Salsas de Mesa", "emoji": "🟢", "desc": "Salsa verde para cocinar. Top seller en salsas enlatadas."}, {"id": 72, "name": "Herdez Salsa Roja 220g", "brand": "Herdez", "cat": "alimentos", "sub": "Salsas de Mesa", "emoji": "🔴", "desc": "Salsa roja para cocinar. Imprescindible en cocinas mexicanas."}, {"id": 73, "name": "Herdez Guacamole 220g", "brand": "Herdez", "cat": "alimentos", "sub": "Salsas de Mesa", "emoji": "🥑", "desc": "Guacamole listo para usar. Canal foodservice y retail."}, {"id": 74, "name": "Knorr Caldo de Pollo 1kg", "brand": "Knorr", "cat": "alimentos", "sub": "Sazonadores", "emoji": "🍗", "desc": "Caldo en polvo sabor pollo. El condimento más usado en cocinas mexicanas."}, {"id": 75, "name": "Knorr Caldo de Res 1kg", "brand": "Knorr", "cat": "alimentos", "sub": "Sazonadores", "emoji": "🥩", "desc": "Caldo de res en polvo. Canal institucional y restaurantes."}, {"id": 76, "name": "Knorr Suiza 200g", "brand": "Knorr", "cat": "alimentos", "sub": "Sazonadores", "emoji": "🟡", "desc": "Sazonador líquido multiusos. Cocinas de alto volumen."}, {"id": 77, "name": "Maggi Jugo Sazonador 200ml", "brand": "Maggi", "cat": "alimentos", "sub": "Sazonadores", "emoji": "🫙", "desc": "Sazonador líquido estrella Maggi. Básico en toda cocina mexicana."}, {"id": 78, "name": "Maggi Jugo Sazonador 750ml", "brand": "Maggi", "cat": "alimentos", "sub": "Sazonadores", "emoji": "🫙", "desc": "Presentación grande para foodservice y cocinas industriales."}, {"id": 79, "name": "Maseca Harina Maíz 1kg", "brand": "Maseca", "cat": "alimentos", "sub": "Harinas", "emoji": "🌽", "desc": "Harina de maíz nixtamalizada. Básico absoluto en cocinas mexicanas."}, {"id": 80, "name": "Maseca Harina Maíz 5kg", "brand": "Maseca", "cat": "alimentos", "sub": "Harinas", "emoji": "🌽", "desc": "Presentación familiar para tortillerías y comedores."}, {"id": 81, "name": "Clabber Girl Polvo para Hornear", "brand": "Clabber Girl", "cat": "alimentos", "sub": "Harinas", "emoji": "🫙", "desc": "Polvo para hornear. Canal panaderías y pastelerías."}, {"id": 82, "name": "Maizena Fécula 500g", "brand": "Maizena", "cat": "alimentos", "sub": "Sazonadores", "emoji": "🌾", "desc": "Fécula de maíz. Básico en repostería y cocinas."}, {"id": 83, "name": "La Costeña Chiles Jalapeños 380g", "brand": "La Costeña", "cat": "enlatados", "sub": "Chiles Conserva", "emoji": "🫙", "desc": "Jalapeños en escabeche. Imprescindible en toda mesa mexicana."}, {"id": 84, "name": "La Costeña Chiles Chipotles 220g", "brand": "La Costeña", "cat": "enlatados", "sub": "Chiles Conserva", "emoji": "🌶️", "desc": "Chipotles en adobo. Uso intensivo en cocinas y restaurantes."}, {"id": 85, "name": "La Costeña Frijoles Negros 560g", "brand": "La Costeña", "cat": "enlatados", "sub": "Frijol Lata/Pouch", "emoji": "🫘", "desc": "Frijoles negros enteros. Básico institucional."}, {"id": 86, "name": "La Costeña Frijoles Refritos 560g", "brand": "La Costeña", "cat": "enlatados", "sub": "Frijol Lata/Pouch", "emoji": "🟤", "desc": "Frijoles refritos listos para calentar. Alta rotación en foodservice."}, {"id": 87, "name": "La Costeña Chiles Serranos 220g", "brand": "La Costeña", "cat": "enlatados", "sub": "Chiles Conserva", "emoji": "🟢", "desc": "Serranos en escabeche. Complemento del portafolio chiles."}, {"id": 88, "name": "Herdez Mole Rojo 235g", "brand": "Herdez", "cat": "enlatados", "sub": "Conservas", "emoji": "🍫", "desc": "Mole rojo listo para usar. Gran demanda en cocinas y restaurantes."}, {"id": 89, "name": "Clemente Jacques Mole Negro 235g", "brand": "Clemente Jacques", "cat": "enlatados", "sub": "Conservas", "emoji": "⚫", "desc": "Mole negro estilo Oaxaca. Canal restaurantes y hoteles."}, {"id": 90, "name": "Del Monte Duraznos Mitades 820g", "brand": "Del Monte", "cat": "enlatados", "sub": "Frutas Almíbar", "emoji": "🍑", "desc": "Duraznos en almíbar. Clásico de la despensa mexicana."}, {"id": 91, "name": "Del Monte Piña en Trozos 820g", "brand": "Del Monte", "cat": "enlatados", "sub": "Frutas Almíbar", "emoji": "🍍", "desc": "Piña en almíbar en trozos. Canal repostería e institucional."}, {"id": 92, "name": "Del Monte Chícharos 225g", "brand": "Del Monte", "cat": "enlatados", "sub": "Vegetales Enlatados", "emoji": "🟩", "desc": "Chícharos enlatados. Uso en cocinas y comedores."}, {"id": 93, "name": "Atún Dolores Agua 140g", "brand": "Dolores", "cat": "enlatados", "sub": "Atunes", "emoji": "🐟", "desc": "Atún en agua. Alta rotación en abarrotes y misceláneas."}, {"id": 94, "name": "Atún Herdez Agua 140g", "brand": "Herdez", "cat": "enlatados", "sub": "Atunes", "emoji": "🐟", "desc": "Atún en agua Herdez. Alternativa de marca nacional."}, {"id": 95, "name": "Maruchan Sopa Instantánea Pollo", "brand": "Maruchan", "cat": "enlatados", "sub": "Sopas Instantáneas", "emoji": "🍜", "desc": "Sopa ramen sabor pollo. La instantánea más vendida de México."}, {"id": 96, "name": "Maruchan Sopa Instantánea Res", "brand": "Maruchan", "cat": "enlatados", "sub": "Sopas Instantáneas", "emoji": "🍜", "desc": "Sopa ramen sabor res. Complemento básico del portafolio."}, {"id": 97, "name": "Knorr Sopa de Letras Tomate", "brand": "Knorr", "cat": "enlatados", "sub": "Sopas Instantáneas", "emoji": "🍅", "desc": "Sopas Knorr clásicas. Fuerte en canal abarrotes y mayoreo."}, {"id": 98, "name": "Barilla Espagueti 500g", "brand": "Barilla", "cat": "alimentos", "sub": "Pastas", "emoji": "🍝", "desc": "Pasta espagueti premium. Canal restaurantes y autoservicio."}, {"id": 99, "name": "La Moderna Espagueti 200g", "brand": "La Moderna", "cat": "alimentos", "sub": "Pastas", "emoji": "🍝", "desc": "Pasta económica. Alta rotación en abarrotes y mayoreo."}, {"id": 100, "name": "La Moderna Codito 200g", "brand": "La Moderna", "cat": "alimentos", "sub": "Pastas", "emoji": "🍝", "desc": "Coditos para sopa. Clásico en cocinas mexicanas."}, {"id": 101, "name": "Arroz SOS Largo 1kg", "brand": "SOS", "cat": "alimentos", "sub": "Arroz", "emoji": "🍚", "desc": "Arroz de grano largo. Básico en comedores e institucional."}, {"id": 102, "name": "Arroz Verde Valle 1kg", "brand": "Verde Valle", "cat": "alimentos", "sub": "Arroz", "emoji": "🍚", "desc": "Arroz nacional. Alta rotación en todo el canal mayoreo."}, {"id": 103, "name": "Frijol Flor de Mayo 1kg", "brand": "Verde Valle", "cat": "alimentos", "sub": "Frijol Grano", "emoji": "🫘", "desc": "Frijol de grano. Básico irrenunciable en surtido de abarrotes."}, {"id": 104, "name": "Frijol Negro 1kg", "brand": "Verde Valle", "cat": "alimentos", "sub": "Frijol Grano", "emoji": "⚫", "desc": "Frijol negro. Fuerte en sur y sureste del país."}, {"id": 105, "name": "Lala Leche Entera 1L", "brand": "Lala", "cat": "lacteos", "sub": "Leche/Lácteos", "emoji": "🥛", "desc": "Leche entera UHT. Líder en el noreste de México."}, {"id": 106, "name": "Lala Leche Light 1L", "brand": "Lala", "cat": "lacteos", "sub": "Leche/Lácteos", "emoji": "🥛", "desc": "Leche semi-descremada. Canal health y dieta."}, {"id": 107, "name": "Alpura Leche Entera 1L", "brand": "Alpura", "cat": "lacteos", "sub": "Leche/Lácteos", "emoji": "🥛", "desc": "Leche entera Alpura. Segunda marca en presencia nacional."}, {"id": 108, "name": "Nestlé La Lechera 397g", "brand": "Nestlé", "cat": "lacteos", "sub": "Leche/Lácteos", "emoji": "🤍", "desc": "Leche condensada. Básico repostería y cafeterías."}, {"id": 109, "name": "Carnation Clavel Evaporada", "brand": "Carnation", "cat": "lacteos", "sub": "Leche/Lácteos", "emoji": "🥛", "desc": "Leche evaporada. Canal cocinas y postres institucional."}, {"id": 110, "name": "Lala Crema Ácida 400ml", "brand": "Lala", "cat": "lacteos", "sub": "Leche/Lácteos", "emoji": "🤍", "desc": "Crema ácida. Uso intensivo en cocinas y restaurantes norteños."}, {"id": 111, "name": "Azúcar Estándar 1kg", "brand": "Zulka", "cat": "alimentos", "sub": "Azúcar", "emoji": "🍬", "desc": "Azúcar morena sin refinar Zulka. Tendencia health en crecimiento."}, {"id": 112, "name": "Azúcar Refinada 1kg", "brand": "La Abeja", "cat": "alimentos", "sub": "Azúcar", "emoji": "🤍", "desc": "Azúcar blanca refinada. Básico en panaderías y cafeterías."}, {"id": 113, "name": "Splenda Sobres x50", "brand": "Splenda", "cat": "alimentos", "sub": "Endulzantes", "emoji": "🟡", "desc": "Endulzante sin calorías. Canal hoteles, restaurantes, oficinas."}, {"id": 114, "name": "Equal Sobres x50", "brand": "Equal", "cat": "alimentos", "sub": "Endulzantes", "emoji": "🔵", "desc": "Endulzante clásico. Muy fuerte en foodservice y cafeterías."}, {"id": 115, "name": "Nutrioli Aceite 900ml", "brand": "Nutrioli", "cat": "alimentos", "sub": "Aceites", "emoji": "🫙", "desc": "Aceite de girasol. Líder en aceites de cocina México."}, {"id": 116, "name": "Nutrioli Aceite 5L", "brand": "Nutrioli", "cat": "alimentos", "sub": "Aceites", "emoji": "🫙", "desc": "Presentación familiar para cocinas de alto volumen."}, {"id": 117, "name": "Capullo Aceite 900ml", "brand": "Capullo", "cat": "alimentos", "sub": "Aceites", "emoji": "🌻", "desc": "Aceite de cártamo Capullo. Opción light en aceites de cocina."}, {"id": 118, "name": "Ragú Aceite de Oliva 500ml", "brand": "Ragú", "cat": "alimentos", "sub": "Aceites", "emoji": "🫒", "desc": "Aceite de oliva extra virgen. Canal restaurantes premium."}, {"id": 119, "name": "Ricolino Bubulubu", "brand": "Ricolino", "cat": "dulces", "sub": "Chocolate", "emoji": "🍫", "desc": "Barra de chocolate y cajeta. Top seller dulces individuales."}, {"id": 120, "name": "Ricolino Paleta Payaso", "brand": "Ricolino", "cat": "dulces", "sub": "Chocolate", "emoji": "🍭", "desc": "Paleta de chocolate con caramelo. Icónica en tiendas de barrio."}, {"id": 121, "name": "Chocolate Carlos V", "brand": "Nestlé", "cat": "dulces", "sub": "Chocolate", "emoji": "👑", "desc": "Barrita de chocolate con leche. Clásico irrenunciable mexicano."}, {"id": 122, "name": "Pulparindo Mango", "brand": "De la Rosa", "cat": "dulces", "sub": "Dulces Típicos", "emoji": "🥭", "desc": "Dulce de pulpa de tamarindo sabor mango. Alta rotación en abarrotes."}, {"id": 123, "name": "Mazapán De la Rosa", "brand": "De la Rosa", "cat": "dulces", "sub": "Dulces Típicos", "emoji": "🟡", "desc": "Mazapán de cacahuate. Ícono de la confitería mexicana."}, {"id": 124, "name": "Glorias Norteñas", "brand": "Glorias", "cat": "dulces", "sub": "Dulces Típicos", "emoji": "🟤", "desc": "Dulce de leche de cabra. Especialidad norteña de alta demanda."}]
+// ─── FILTRO POR FAMILIA ───
+let activeFamily = null;
 
-// ─── RENDER CATALOG ───
-let activeFilter = 'todos';
-let searchQuery = '';
+function filterFamily(cat) {
+  const cards = document.querySelectorAll('.familia-card');
+  const sections = document.querySelectorAll('.cat-section');
 
-function renderProducts() {
-  const grid = document.getElementById('productsGrid');
-  const noRes = grid.querySelector('.no-results') || createNoResults(grid);
-
-  const filtered = products.filter(p => {
-    const matchCat = activeFilter === 'todos' || p.cat === activeFilter;
-    const q = searchQuery.toLowerCase();
-    const matchSearch = !q || p.name.toLowerCase().includes(q) || p.brand.toLowerCase().includes(q) || p.desc.toLowerCase().includes(q) || (p.sub && p.sub.toLowerCase().includes(q));
-    return matchCat && matchSearch;
-  });
-
-  grid.innerHTML = '';
-  
-  if (filtered.length === 0) {
-    const nr = document.createElement('div');
-    nr.className = 'no-results visible';
-    nr.innerHTML = '<div class="no-results-icon">🔍</div><p>No se encontraron productos. Intenta con otro término.</p>';
-    grid.appendChild(nr);
-    return;
+  if (activeFamily === cat) {
+    // Deselect → mostrar todo
+    activeFamily = null;
+    cards.forEach(c => c.classList.remove('active'));
+    sections.forEach(s => s.style.display = '');
+  } else {
+    activeFamily = cat;
+    cards.forEach(c => {
+      c.classList.toggle('active', c.dataset.cat === cat);
+    });
+    sections.forEach(s => {
+      s.style.display = s.dataset.cat === cat ? '' : 'none';
+    });
   }
-
-  filtered.forEach((p, i) => {
-    const catLabels = { botanas:'Botanas y snacks', bebidas:'Bebidas', alimentos:'Alimentos y condimentos', pan:'Pan y pastelería', enlatados:'Enlatados y conservas', cereales:'Cereales y desayuno', lacteos:'Lácteos', dulces:'Dulces' };
-    const msg = encodeURIComponent(`Hola, me interesa cotizar: *${p.name}* (${p.brand}). ¿Podrían enviarme información de disponibilidad y precios?`);
-    const card = document.createElement('div');
-    card.className = 'product-card';
-    card.style.transitionDelay = `${(i % 8) * 0.05}s`;
-    card.innerHTML = `
-      <div class="product-img">
-        ${p.emoji}
-        <div class="product-brand-badge">${p.brand}</div>
-      </div>
-      <div class="product-info">
-        <div class="product-cat">${catLabels[p.cat]}${p.sub ? ' · ' + p.sub : ''}</div>
-        <div class="product-name">${p.name}</div>
-        <div class="product-desc">${p.desc}</div>
-        <a href="https://wa.me/${WA_NUM}?text=${msg}" target="_blank" class="btn-cotizar">
-          Solicitar cotización →
-        </a>
-      </div>`;
-    grid.appendChild(card);
-    setTimeout(() => card.classList.add('visible'), 50 + i * 40);
-  });
+  // Limpiar búsqueda al filtrar
+  document.getElementById('searchInput').value = '';
+  clearSearch();
 }
 
-function createNoResults(grid) {
-  const nr = document.createElement('div');
-  nr.className = 'no-results';
-  grid.appendChild(nr);
-  return nr;
+// ─── TOGGLE VER TODOS ───
+function toggleSection(btn, cat) {
+  const section = document.getElementById('section-' + cat);
+  const hiddenCards = section.querySelectorAll('.product-card-hidden, .product-card[data-hidden="true"]');
+  const allCards = section.querySelectorAll('.product-card');
+  const expanded = btn.classList.contains('expanded');
+
+  if (expanded) {
+    // Colapsar: ocultar cards > 4
+    allCards.forEach((card, i) => {
+      if (i >= 4) card.style.display = 'none';
+    });
+    btn.textContent = 'Ver todos →';
+    btn.classList.remove('expanded');
+  } else {
+    // Expandir: mostrar todas
+    allCards.forEach(card => card.style.display = '');
+    btn.textContent = 'Mostrar menos ↑';
+    btn.classList.add('expanded');
+  }
 }
 
-// Filter tabs
-document.getElementById('filterTabs').addEventListener('click', e => {
-  if (e.target.classList.contains('filter-tab')) {
-    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
-    e.target.classList.add('active');
-    activeFilter = e.target.dataset.cat;
-    renderProducts();
-  }
+// Inicializar: ocultar cards > 4 en cada sección
+document.querySelectorAll('.cat-section').forEach(section => {
+  const cards = section.querySelectorAll('.product-card');
+  cards.forEach((card, i) => {
+    if (i >= 4) card.style.display = 'none';
+  });
 });
 
-// Search
+// ─── BÚSQUEDA ───
+function clearSearch() {
+  document.querySelectorAll('.cat-section').forEach(section => {
+    section.style.display = activeFamily ? (section.dataset.cat === activeFamily ? '' : 'none') : '';
+    const cards = section.querySelectorAll('.product-card');
+    cards.forEach((card, i) => { card.style.display = i < 4 ? '' : 'none'; });
+    // Reset btn-ver-todos
+    const btn = section.querySelector('.btn-ver-todos');
+    if (btn) { btn.textContent = 'Ver todos →'; btn.classList.remove('expanded'); }
+  });
+}
+
 let searchTimeout;
-document.getElementById('searchInput').addEventListener('input', e => {
+document.getElementById('searchInput').addEventListener('input', function() {
   clearTimeout(searchTimeout);
   searchTimeout = setTimeout(() => {
-    searchQuery = e.target.value;
-    renderProducts();
+    const q = this.value.toLowerCase().trim();
+    if (!q) { clearSearch(); return; }
+
+    // Reset familia filter visualmente
+    document.querySelectorAll('.familia-card').forEach(c => c.classList.remove('active'));
+    activeFamily = null;
+
+    document.querySelectorAll('.cat-section').forEach(section => {
+      const cards = section.querySelectorAll('.product-card');
+      let sectionVisible = false;
+      cards.forEach(card => {
+        const name = card.querySelector('.product-name').textContent.toLowerCase();
+        const brand = card.querySelector('.product-brand-badge').textContent.toLowerCase();
+        const desc = card.querySelector('.product-desc').textContent.toLowerCase();
+        const cat = card.querySelector('.product-cat').textContent.toLowerCase();
+        const match = name.includes(q) || brand.includes(q) || desc.includes(q) || cat.includes(q);
+        card.style.display = match ? '' : 'none';
+        if (match) sectionVisible = true;
+      });
+      section.style.display = sectionVisible ? '' : 'none';
+    });
   }, 200);
 });
-
-renderProducts();
 
 // ─── CONTACTO → WHATSAPP ───
 function enviarContacto() {
